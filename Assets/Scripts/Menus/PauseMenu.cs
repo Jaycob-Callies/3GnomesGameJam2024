@@ -6,14 +6,20 @@ public class PauseMenu : MonoBehaviour {
 
     public static bool GameIsPaused = false;
 
+    GameManager GM;
+    private void Start() {
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>(); 
+    }
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (GameIsPaused) {
-                Resume();
-            }
-            else {
-                Pause();
-            }
+        if(GM.GameEnded == false) {
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                if (GameIsPaused) {
+                    Resume();
+                }
+                else {
+                    Pause();
+                }
+            } 
         }
     }
 

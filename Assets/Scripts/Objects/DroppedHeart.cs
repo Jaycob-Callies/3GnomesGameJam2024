@@ -24,6 +24,7 @@ public class DroppedHeart : MonoBehaviour {
                 Debug.Log("Cant Gain more HP");
             }
 
+            GM.ItemsGrabbed += 1;
             Destroy(gameObject);
         }
     }

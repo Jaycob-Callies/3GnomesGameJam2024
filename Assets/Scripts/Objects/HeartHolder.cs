@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class HeartHolder : MonoBehaviour {
     public GameObject[] Hearts;
+    public GameObject LoseScreen;
     GameManager GM;
     private void Start() {
         //This is so the hearts show up when you go to another scene 
@@ -17,8 +18,7 @@ public class HeartHolder : MonoBehaviour {
             Hearts[i].SetActive(true);
         }
         if(GM.HP == 0) {
-            //YOU LOSE SCREEN
-            //SceneManager.LoadScene(0);
+            LoseScreen.GetComponent<LoseScreen>().GameOver();
         }
     }
 }
