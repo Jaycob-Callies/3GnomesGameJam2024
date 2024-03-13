@@ -18,7 +18,7 @@ public class HeartHolder : MonoBehaviour {
         }
         if(GM.HP == 0) {
             //YOU LOSE SCREEN
-            SceneManager.LoadScene(0);
+            //SceneManager.LoadScene(0);
         }
     }
 }
