@@ -137,10 +137,11 @@ public class SimplexNoise
         return corner;
     }
 
-    public void randomizeSeed()
+    public int randomizeSeed()
     {
         int seed = (int)(System.DateTime.UtcNow.Ticks);
         setSeed(seed);
+        return seed;
     }
 
     public void setSeed(int seedNumber)
@@ -212,6 +213,7 @@ public class TerrainController : MonoBehaviour
     public Texture2D spriteMap = null;
     public List<float> spriteCutoff = new List<float>();
     public int seed = 0;
+    public bool randomSeed = true;
     public Shader shader = null;
     public float terrainScale = 0.01f;
     [Range(0f, 1f)]
@@ -233,6 +235,11 @@ public class TerrainController : MonoBehaviour
 
         this.noise = new SimplexNoise();
         this.noise.setSeed(this.seed);
+
+        if (randomSeed)
+        {
+            this.seed = this.noise.randomizeSeed();
+        }
 
         //Debug.Log("1");
         //Debug.Log(this.shader.name);
@@ -289,4 +296,7 @@ public class TerrainController : MonoBehaviour
             terrainSpriteController.setSimplexChanges(this.terrainScale, this.noise.getPermutation());
         }
 	}
+
+
+
 }
