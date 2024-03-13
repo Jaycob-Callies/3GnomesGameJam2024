@@ -34,6 +34,9 @@ public class PerformSpell : MonoBehaviour {
         if (CastDelay[GM.CurrentSpells[2]] > -1) {
             CastDelay[GM.CurrentSpells[2]] -= Time.deltaTime;
         }
+
+        //Updates Stats
+        GM.TimePlayed += Time.deltaTime;
     }
 
     public void CastSpell(int ID) {
@@ -43,13 +46,12 @@ public class PerformSpell : MonoBehaviour {
         }
         if (ID == 1) {
             //Fireball Attack 
-            if (CastDelay[ID] < 0)
-            {
+            if (CastDelay[ID] < 0) {
 
 
                 //Should set the icon in the UiIcons to the icon of the spell
 
-
+                GM.SpellsCast += 1;
                 float Velocity = 6f;
                 CastDelay[ID] = CastSpeed[ID];
                 GameObject Fireball = Instantiate(GM.SpellObjects[ID], transform.position, transform.rotation);
@@ -63,6 +65,7 @@ public class PerformSpell : MonoBehaviour {
 
             if (CastDelay[ID] < 0)
             {
+                GM.SpellsCast += 1;
                 float Velocity = 9f;
                 CastDelay[ID] = CastSpeed[ID];
                 GameObject Ice = Instantiate(GM.SpellObjects[ID], transform.position, transform.rotation);
@@ -76,6 +79,7 @@ public class PerformSpell : MonoBehaviour {
             //Lightning Attack
             if (CastDelay[ID] < 0)
             {
+                GM.SpellsCast += 1;
                 float Velocity = 12f;
                 CastDelay[ID] = CastSpeed[ID];
                 GameObject Lightning = Instantiate(GM.SpellObjects[ID], transform.position, transform.rotation);
@@ -87,6 +91,7 @@ public class PerformSpell : MonoBehaviour {
             //Goo Attack
             if (CastDelay[ID] < 0)
             {
+                GM.SpellsCast += 1;
                 float Velocity = 6.5f;
                 CastDelay[ID] = CastSpeed[ID];
                 GameObject Goo = Instantiate(GM.SpellObjects[ID], transform.position, transform.rotation);
@@ -97,6 +102,7 @@ public class PerformSpell : MonoBehaviour {
             //Star Attack
             if (CastDelay[ID] < 0)
             {
+                GM.SpellsCast += 1;
                 float Velocity = 10f;
                 CastDelay[ID] = CastSpeed[ID];
                 GameObject Star = Instantiate(GM.SpellObjects[ID], transform.position, transform.rotation);

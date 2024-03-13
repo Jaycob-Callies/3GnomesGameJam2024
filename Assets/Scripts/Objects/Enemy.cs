@@ -65,6 +65,7 @@ public class Enemy : MonoBehaviour {
     public void HitEnemy(int DamageTaken) {
         HP-=DamageTaken;
         if (HP <= 0) {
+            GM.EnemiesKilled += 1;
             Destroy(gameObject); //idealy this is more like a death animation and not just *poof*
 
             if(Random.Range(0,5) == 1) { 

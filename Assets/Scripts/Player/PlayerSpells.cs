@@ -6,6 +6,7 @@ public class PlayerSpells : MonoBehaviour {
 
     #region Variables
     GameManager GM;
+    public LoseScreen LS;
 
     public Image[] UiIcons = new Image[3];
     float cooldown = 10f; //maybe if we have extra time in the end we can have difficulties that raise and lower this number
@@ -22,7 +23,7 @@ public class PlayerSpells : MonoBehaviour {
         Perform = GetComponent<PerformSpell>();
 
         if (GM.CurrentSpells[0] == 0 && GM.CurrentSpells[1] == 0 && GM.CurrentSpells[2] == 0) {
-            //this happens when you first hit play
+            //this happens when you first hit play so it gives you a spell to start with
             GM.CurrentSpells[0] = GM.GrantSpell();
         }
 
@@ -45,9 +46,9 @@ public class PlayerSpells : MonoBehaviour {
 
     void Update() {
 
-        if(GM.CurrentSpells[0] == 0 && GM.CurrentSpells[1] == 0 && GM.CurrentSpells[2] == 0) {
-            //if all 3 spells are lost then you go back to the main menu, This should probably be a YOU LOSE screen
-            SceneManager.LoadScene(0);
+        if(GM.CurrentSpells[0] == 0 && GM.CurrentSpells[1] == 0 && GM.CurrentSpells[2] == 0) { 
+            //when u run out of spells this happens
+            LS.GameOver(); 
         }
 
         if(PauseMenu.GameIsPaused == false) {

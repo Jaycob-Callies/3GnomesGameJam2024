@@ -33,6 +33,7 @@ public class Spellbook : MonoBehaviour {
                 Debug.Log("Inventory Full");
             }
 
+            GM.ItemsGrabbed += 1;
             Destroy(gameObject);
         }
     } 
