@@ -244,16 +244,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88214b72e15f28409af70378e3df7ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteMap: {fileID: 2800000, guid: dd5dd3c7dcb4b1f4390b0551b0669296, type: 3}
+  spriteMap: {fileID: 2800000, guid: ef054d2b1da1eba4fb27a6168a95d57e, type: 3}
   spriteCutoff:
-  - 0.8
-  - 0.6
-  - 0.5
-  - 0.2
-  - 0.1
-  seed: 0
+  - -0.75
+  - 0.65
+  - 0.85
+  seed: 16
   shader: {fileID: 4800000, guid: 04e2595a511f09f42a2f52d804abe03c, type: 3}
-  ditherPercent: 0.5
+  terrainScale: 0.04
+  ditherPercent: 0.4
   spriteList: []
 --- !u!4 &568145842
 Transform:

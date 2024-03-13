@@ -6,8 +6,8 @@ using UnityEngine;
 public class SimplexNoise
 {
     /*
-     * Adapted from Original Source Code for Simplex in C++
-     * https://github.com/PawelWorwa/SimplexNoise/blob/master/SimplexNoise.cpp
+     * Adapted from Original Source Code for Simplex
+     * https://www.researchgate.net/publication/216813608_Simplex_noise_demystified
     */
 
     private static float skewingFactor = (Mathf.Sqrt(2.0f + 1.0f) - 1.0f) / 2.0f;
@@ -146,6 +146,7 @@ public class SimplexNoise
     public void setSeed(int seedNumber)
     {
         Random.InitState(seedNumber);
+        ORIGINAL_PERMUTATION.CopyTo(this.permutation, 0);
         ShufflePermutation<int>(ref this.permutation);
     }
 
@@ -279,6 +280,13 @@ public class TerrainController : MonoBehaviour
             {
                 spriteCutoff.RemoveAt(spriteCutoff.Count - 1);
             }
+        }
+        spriteCutoff.Sort();
+        if (this.terrainSpriteController != null)
+        {
+            terrainSpriteController.setDitherChanges(this.ditherPercent, this.spriteCutoff);
+            this.noise.setSeed(this.seed);
+            terrainSpriteController.setSimplexChanges(this.terrainScale, this.noise.getPermutation());
         }
 	}
 }

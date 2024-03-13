@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,56 @@ public class TerrainSpriteController : MonoBehaviour
 {
     public Shader shader = null;
     public List<Texture2D> textures = null;
-    public float ditherPercent = 0.5f;
+    private float ditherPercent = 0.5f;
+    private float terrainScale = 0.5f;
     private int[] permutation = null;
     private List<Material> materialList = null;
     private List<GameObject> spriteLayers = null;
 
-	public void Initialize(Shader initShader, Texture2D initTexture, int[] intPermutation, List<float> spriteCutoff, float ditherPercent, float terrainScale)
+    public void setDitherChanges(float ditherPercent, List<float> spriteCutoff)
+    {
+        this.ditherPercent = ditherPercent;
+        int spriteCount = spriteLayers.Count;
+        for (int spriteIndex = 0; spriteIndex < spriteCount; spriteIndex++)
+        {
+
+            float ditherPrev = spriteIndex <= 1 ? -1f : spriteCutoff[spriteIndex - 2];
+            float ditherCur = spriteIndex == 0 ? -1f : spriteCutoff[spriteIndex - 1];
+            float ditherNext = spriteIndex == (spriteCount - 1) ? 1f : spriteCutoff[spriteIndex];
+
+            float ditherMin = Mathf.Lerp(ditherCur, ditherPrev, ditherPercent * 0.5f);
+            float ditherMax = Mathf.Lerp(ditherCur, ditherNext, ditherPercent * 0.5f);
+
+
+            if (spriteIndex == 0)
+            {
+                ditherMin = ditherMax = -1.0f;
+            }
+
+            Debug.Log("Sprite " + spriteIndex + ": ( " + ditherMin.ToString() + ", " + ditherMax.ToString() + " )");
+
+            spriteLayers[spriteIndex].GetComponent<MeshRenderer>().material.SetFloat("_DitherMax", ditherMax);
+            spriteLayers[spriteIndex].GetComponent<MeshRenderer>().material.SetFloat("_DitherMin", ditherMin);
+        }
+    }
+
+    public void setSimplexChanges(float terrainScale, int[] intPermutation)
+    {
+        this.terrainScale = terrainScale;
+
+        List<float> floatPermutation = new List<float>();
+        for (int pIndex = 0; pIndex < intPermutation.Length; pIndex++)
+        {
+            floatPermutation.Add((float)intPermutation[pIndex]);
+        }
+        foreach(GameObject layer in spriteLayers)
+        {
+            layer.GetComponent<MeshRenderer>().material.SetFloatArray("_Permutation", floatPermutation);
+            layer.GetComponent<MeshRenderer>().material.SetFloat("_Scale", terrainScale);
+        }
+    }
+
+    public void Initialize(Shader initShader, Texture2D initTexture, int[] intPermutation, List<float> spriteCutoff, float ditherPercent, float terrainScale)
     {
         this.ditherPercent = ditherPercent;
         //convert permutation
@@ -42,8 +87,8 @@ public class TerrainSpriteController : MonoBehaviour
             float ditherCur = spriteIndex == 0 ? -1f : spriteCutoff[spriteIndex - 1];
             float ditherNext = spriteIndex == (spriteCount - 1) ? 1f : spriteCutoff[spriteIndex];
 
-            float ditherMin = Mathf.Lerp(ditherCur, ditherPrev, ditherPercent);
-            float ditherMax = Mathf.Lerp(ditherCur, ditherNext, ditherPercent);
+            float ditherMin = Mathf.Lerp(ditherCur, ditherPrev, ditherPercent * 0.5f);
+            float ditherMax = Mathf.Lerp(ditherCur, ditherNext, ditherPercent * 0.5f);
 
             if (spriteIndex == 0)
 			{

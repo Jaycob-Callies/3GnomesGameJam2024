@@ -213,33 +213,11 @@ Shader "Hidden/NewImageEffectShader"
                 
                 float Noise = signedRawNoise(xTile + (xPixel / _PixelPerTile), yTile + (yPixel / _PixelPerTile), _Scale);
                 
-                float ditherOffset = (_DitherMax - _DitherMin) * (ditherMap[int(posMod(xPixel, 4.0) + (posMod(yPixel, 4.0) * 4.0))] / 16.0);
+                float ditherOffset = (_DitherMax - _DitherMin) * (ditherMap[int(posMod(xPixel, 4.0) + (posMod(yPixel, 4.0) * 4.0))] / 15.0);
 
                 clip(Noise + ditherOffset - _DitherMax);
                 
                 return tex2Dlod(_MainTex, float4(offset + (xPixel * rcp(_PixelPerTile)), offset + (yPixel * rcp(_PixelPerTile)), 0, 0));
-
-                return fixed4(Noise, frac(Noise + (1.0/3.0)), frac(Noise + (2.0/3.0)), 1);
-
-                i.uv.x = offset + (xPixel * rcp(_PixelPerTile));
-                i.uv.y = offset + (yPixel * rcp(_PixelPerTile));
-
-                float4 biasCoord = float4(i.uv.x, i.uv.y, 0, 0);
-
-                //float2 tileCoord = float2(
-                 //       frac(offset + (round(frac(i.worldPos.x) * _PixelPerTile) / _PixelPerTile)),
-                  //      frac(offset + (round(frac(i.worldPos.y) * _PixelPerTile) / _PixelPerTile)));
-                //fixed4 col = tex2D(_MainTex, tileCoord);
-                fixed4 col = tex2Dlod(_MainTex, biasCoord);
-                //fixed4 col = tex2D(_MainTex, i.uv);
-                return col;
-
-                // just invert the colors
-                //col.rgb = 1 - col.rgb;
-                //return fixed4(0, 0, 1, 0);
-                return fixed4(frac(i.worldPos.x), frac(i.worldPos.y), frac(i.worldPos.z), 0);
-                return fixed4(0, 0, frac(i.vertex.w), 0);
-                return col;
             }
             ENDCG
         }
