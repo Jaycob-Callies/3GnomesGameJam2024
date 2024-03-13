@@ -212,6 +212,7 @@ public class TerrainController : MonoBehaviour
     public List<float> spriteCutoff = new List<float>();
     public int seed = 0;
     public Shader shader = null;
+    public float terrainScale = 0.01f;
     [Range(0f, 1f)]
     public float ditherPercent = 0.5f;
     [HideInInspector]
@@ -250,8 +251,16 @@ public class TerrainController : MonoBehaviour
             Debug.Log("2");
             Debug.Log(this.shader.name);
             Debug.Log("3");
-            Debug.Log(this.noise.getPermutation());
-            terrainSpriteController.Initialize(this.shader, spriteMap, this.noise.getPermutation(), this.spriteCutoff, this.ditherPercent);
+            for(int i = 0; i< this.noise.getPermutation().Length; i = i + 16)
+            {
+                string s = "";
+                for (int j = i; j < i + 16; j++)
+                {
+                    s = s + this.noise.getPermutation()[j] + ", ";
+                }
+                Debug.Log(s);
+            }
+            terrainSpriteController.Initialize(this.shader, spriteMap, this.noise.getPermutation(), this.spriteCutoff, this.ditherPercent, this.terrainScale);
 
             updatedOnce = !updatedOnce;
         }

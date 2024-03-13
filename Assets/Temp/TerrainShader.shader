@@ -23,7 +23,7 @@ Shader "Hidden/NewImageEffectShader"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma enable_d3d11_debug_symbols
+            //#pragma enable_d3d11_debug_symbols
 
             #include "UnityCG.cginc"
 
@@ -31,10 +31,10 @@ Shader "Hidden/NewImageEffectShader"
             sampler2D _MainTex;
 
             static const int ditherMap[16] = {
-                    1,13,4,16,
-                    9,5,12,8,
-                    3,15,2,14,
-                    11,7,10,6
+                    0,12,3,15,
+                    8,4,11,7,
+                    2,14,1,13,
+                    10,6,9,5
             };
 
             float _Permutation[256];
@@ -43,6 +43,7 @@ Shader "Hidden/NewImageEffectShader"
             float _Gain;
             float _DitherMin;
             float _DitherMax;
+            float _Scale;
 
 
             static const float2 gradient2D[9] = {
@@ -148,7 +149,7 @@ Shader "Hidden/NewImageEffectShader"
                     // Add contributions from each corner to get the final noise value.
                     // The result is scaled to return values in the interval [-1,1].
 
-                    return (35.0 * (n0 + n1 + n2)) + 0.5;
+                    //return (35.0 * (n0 + n1 + n2)) + 0.5;
 
                     return 70.0 * (n0 + n1 + n2);
             }
@@ -202,38 +203,23 @@ Shader "Hidden/NewImageEffectShader"
                 _DitherMax = max(_DitherMin, _DitherMax);
                 _DitherMin = min(_DitherMin, ditherDirectionCheck);
 
-                float offset = 0.5f / _PixelPerTile;
+                float offset = 0.5 / _PixelPerTile;
 
                 float xPixel = floor(frac(i.worldPos.x) * _PixelPerTile);
                 float yPixel = floor(frac(i.worldPos.y) * _PixelPerTile);
 
                 float xTile = floor(i.worldPos.x);
                 float yTile = floor(i.worldPos.y);
-
-                //float simplexResult = signedFBM(xTile + (xPixel / (float)_PixelPerTile), yTile + (yPixel / (float)_PixelPerTile));
-                //float simplexResult = signedRawNoise(xTile + (xPixel / (float)_PixelPerTile), yTile + (yPixel / (float)_PixelPerTile));
                 
-                //float simplexResult = signedRawNoise(i.worldPos.x, i.worldPos.y);
+                float Noise = signedRawNoise(xTile + (xPixel / _PixelPerTile), yTile + (yPixel / _PixelPerTile), _Scale);
                 
-                float C = signedRawNoise(xTile, yTile, 0.01);
+                float ditherOffset = (_DitherMax - _DitherMin) * (ditherMap[int(posMod(xPixel, 4.0) + (posMod(yPixel, 4.0) * 4.0))] / 16.0);
 
-                float2 testF2 = float2(1,0);
-
-                //return fixed4((gradient2D[7].y * 0.5) + 0.5 ,0,0,1);
-
-                return fixed4(C, frac(C + (1.0/3.0)), frac(C + (2.0/3.0)), 1);
-                //return fixed4(simplexResult, calculateCornerValue(hashf(xTile), hashf(yTile), 0) / 255, 1, 1);
-
-                //clip(simplexResult < _DitherMin ? -1 : 1);
-
-                int ditherOffset = ditherMap[((uint)xPixel % 4) + (((uint)yPixel % 4) * 4)];
-
+                clip(Noise + ditherOffset - _DitherMax);
                 
+                return tex2Dlod(_MainTex, float4(offset + (xPixel * rcp(_PixelPerTile)), offset + (yPixel * rcp(_PixelPerTile)), 0, 0));
 
-                /*
-                float xPixel = floor(clamp(mul(frac(i.worldPos.x), (float)_PixelPerTile), 0.1, (float)_PixelPerTile - 0.1));
-                float yPixel = floor(clamp(frac(i.worldPos.y) * _PixelPerTile, 0.9, (float)_PixelPerTile - 0.9));
-                */
+                return fixed4(Noise, frac(Noise + (1.0/3.0)), frac(Noise + (2.0/3.0)), 1);
 
                 i.uv.x = offset + (xPixel * rcp(_PixelPerTile));
                 i.uv.y = offset + (yPixel * rcp(_PixelPerTile));

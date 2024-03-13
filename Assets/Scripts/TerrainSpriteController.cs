@@ -11,9 +11,9 @@ public class TerrainSpriteController : MonoBehaviour
     private List<Material> materialList = null;
     private List<GameObject> spriteLayers = null;
 
-	public void Initialize(Shader initShader, Texture2D initTexture, int[] intPermutation, List<float> spriteCutoff, float ditherPercent)
+	public void Initialize(Shader initShader, Texture2D initTexture, int[] intPermutation, List<float> spriteCutoff, float ditherPercent, float terrainScale)
     {
-
+        this.ditherPercent = ditherPercent;
         //convert permutation
         List<float> floatPermutation = new List<float>();
         for (int pIndex = 0; pIndex < intPermutation.Length; pIndex++)
@@ -52,6 +52,7 @@ public class TerrainSpriteController : MonoBehaviour
 
             convertingMaterials[convertingMaterials.Count - 1].SetFloat("_DitherMax", ditherMax);
             convertingMaterials[convertingMaterials.Count - 1].SetFloat("_DitherMin", ditherMin);
+            convertingMaterials[convertingMaterials.Count - 1].SetFloat("_Scale", terrainScale);
             convertingMaterials[convertingMaterials.Count - 1].SetFloatArray("_Permutation", floatPermutation);
 
 
