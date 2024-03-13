@@ -249,6 +249,8 @@ public class TerrainController : MonoBehaviour
         {
             Debug.Log("2");
             Debug.Log(this.shader.name);
+            Debug.Log("3");
+            Debug.Log(this.noise.getPermutation());
             terrainSpriteController.Initialize(this.shader, spriteMap, this.noise.getPermutation(), this.spriteCutoff, this.ditherPercent);
 
             updatedOnce = !updatedOnce;

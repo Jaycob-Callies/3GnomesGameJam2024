@@ -5,6 +5,7 @@ Shader "Hidden/NewImageEffectShader"
         _MainTex ("Texture", 2D) = "white" {}
         _PixelPerTile("Pixels Per Tile", Integer) = 16
         //_Permutation("Simplex Permutation", FloatArray)
+        _Scale("Simplex Scale", Float) = 0.01
         _Octaves("Simplex Octaves", Integer) = 1
         _Lacunarity("Simplex Lacunarity", Float) = 2.0
         _Gain("Simplex Gain", Float) = 0.5
@@ -22,13 +23,14 @@ Shader "Hidden/NewImageEffectShader"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma enable_d3d11_debug_symbols
 
             #include "UnityCG.cginc"
 
             int _PixelPerTile;
             sampler2D _MainTex;
 
-            int ditherMap[16] = {
+            static const int ditherMap[16] = {
                     1,13,4,16,
                     9,5,12,8,
                     3,15,2,14,
@@ -43,14 +45,16 @@ Shader "Hidden/NewImageEffectShader"
             float _DitherMax;
 
 
-            float2 GRADIENT_2D[9] = {
-                float2(1.0f, 1.0f), float2(-1.0f, 1.0f), float2(1.0f, -1.0f),
-                float2(-1.0f, -1.0f), float2(1.0f, 0.0f), float2(-1.0f, 0.0f),
-                float2(0.0f, 1.0f), float2(0.0f, -1.0f), float2(1.0f, -0.0f)
+            static const float2 gradient2D[9] = {
+                float2(1.0, 1.0), float2(1.0, 1.0), float2(1.0, -1.0),
+                float2(0.0, -1.0), float2(0.0, 0.0), float2(-1.0, 0.0),
+                float2(-1.0, 1.0), float2(-1.0, 0.0), float2(-1.0, -1.0)
             };
 
-            static float skewingFactor = (sqrt(2.0f + 1.0f) - 1.0f) / 2.0f;
-            static float unskewingFactor = (1.0f - (1.0f / sqrt(2.0f + 1.0f))) / 2.0f;
+            static const float gradientsSize = 9.0;//GRADIENT_2D.Length;
+
+            static float F2 = 0.5 * (sqrt(3.0) - 1.0);//(sqrt(2.0 + 1.0) - 1.0) / 2.0;//F2
+            static float G2 = (3.0 - sqrt(3.0)) / 6.0;//(1.0 - (1.0 / sqrt(2.0 + 1.0))) / 2.0;//G2
 
             int fastFloor(float x) {
                     return x > 0 ? (int)x : (int)x - 1;
@@ -60,40 +64,54 @@ Shader "Hidden/NewImageEffectShader"
                     return _Permutation[i & 255];
             }
 
-            float calculateCornerValue(float x, float y, int gradientIndex)
+            float posMod(float x, float y) {
+                    return x - y * floor(x / y);
+            }
+
+            float hashf(float i) {
+                    return _Permutation[int(posMod(i,256))];
+            }
+
+            float calculateCornerValue(float x, float y, float gradientIndex)
             {
-                    float corner = 0.0f;
-                    float t = 0.5f - x * x - y * y;
-                    if (t > 0.0)
+                    float corner = 0.0;
+                    float t = 0.5 - (x * x) - (y * y);
+                    [flatten] if (t > 0.0)
                     {
-                            t *= t;
-                            corner = t * t * dot(GRADIENT_2D[gradientIndex], float2(x, y));
+                            corner = mul(pow(t, 4), dot(gradient2D[int(gradientIndex)], float2(x, y)));
+                    }
+                    else {
+                            //discard;
+                            corner = 0.0;
                     }
 
                     return corner;
             }
 
-            float signedRawNoise(float xPos, float yPos)
+            float signedRawNoise(float xIn, float yIn, float scale = 1.0)
             {
-                    float nCorner0, nCorner1, nCorner2;
+                    xIn *= scale;
+                    yIn *= scale;
+                    
+                    float n0, n1, n2;
 
                     // Skew the input space to determine which simplex cell we're in
-                    float skewedCell = (xPos + yPos) * skewingFactor;
-                    int xSimplexCell = floor(xPos + skewedCell);
-                    int ySimplexCell = floor(yPos + skewedCell);
+                    float s = (xIn + yIn) * F2;//(-inf,inf)
+                    float i = floor(xIn + s);//(-inf,inf) int
+                    float j = floor(yIn + s);//(-inf,inf) int
 
                     // Unskew the cell origin back to (x,y) space
-                    float unskewedCell = (xSimplexCell + ySimplexCell) * unskewingFactor;
-                    float X0 = xSimplexCell - unskewedCell;
-                    float Y0 = ySimplexCell - unskewedCell;
-                    float x0 = xPos - X0; // The x,y distances from the cell origin
-                    float y0 = yPos - Y0;
+                    float t = (i + j) * G2;//(-inf,inf)
+                    float X0 = i - t;//(-inf,inf)
+                    float Y0 = j - t;//(-inf,inf)
+                    float x0 = xIn - X0; // The x,y distances from the cell origin //(0,1)
+                    float y0 = yIn - Y0;//(0,1)
 
                     // For the 2D case, the simplex shape is an equilateral triangle.
                     // Determine which simplex we are in.
                     // Offsets for second (middle) corner of simplex in (i,j) coords
-                    int i1, j1;
-                    if (x0 > y0)
+                    float i1, j1;//(0,1)
+                    [flatten] if (x0 > y0)
                     {
                             i1 = 1;
                             j1 = 0;
@@ -109,28 +127,30 @@ Shader "Hidden/NewImageEffectShader"
                     // a step of (0,1) in (i,j) means a step of (-c,1-c) in (x,y), where
                     // c = (3-sqrt(3))/6
                     // Offsets for middle corner in (x,y) unskewed coords
-                    float x1 = x0 - i1 + unskewingFactor;
-                    float y1 = y0 - j1 + unskewingFactor;
-                    float x2 = x0 - 1.0f + 2.0f * unskewingFactor; // Offsets for last corner in (x,y) unskewed coords
-                    float y2 = y0 - 1.0f + 2.0f * unskewingFactor;
+                    float x1 = x0 - i1 + G2;
+                    float y1 = y0 - j1 + G2;
+                    float x2 = x0 - 1.0 + 2.0 * G2; // Offsets for last corner in (x,y) unskewed coords
+                    float y2 = y0 - 1.0 + 2.0 * G2;
 
                     // Work out the hashed gradient2D indices of the three simplex corners
-                    int ii = xSimplexCell & 255;
-                    int jj = ySimplexCell & 255;
+                    float ii = posMod(i, 256);
+                    float jj = posMod(j, 256);
 
-                    const int gradientsSize = 9;//GRADIENT_2D.Length;
-                    int gradientIndex0 = hash(ii + hash(jj)) % gradientsSize;
-                    int gradientIndex1 = hash(ii + i1 + hash(jj + j1)) % gradientsSize;
-                    int gradientIndex2 = hash(ii + 1 + hash(jj + 1)) % gradientsSize;
+                    float gradientIndex0 = posMod(hashf(ii + hashf(jj)), gradientsSize);
+                    float gradientIndex1 = posMod(hashf(ii + i1 + hashf(jj + j1)), gradientsSize);
+                    float gradientIndex2 = posMod(hashf(ii + 1.0 + hashf(jj + 1.0)), gradientsSize);
 
                     // Calculate the contribution from the three corners
-                    nCorner0 = calculateCornerValue(x0, y0, gradientIndex0);
-                    nCorner1 = calculateCornerValue(x1, y1, gradientIndex1);
-                    nCorner2 = calculateCornerValue(x2, y2, gradientIndex2);
+                    n0 = calculateCornerValue(x0, y0, gradientIndex0);
+                    n1 = calculateCornerValue(x1, y1, gradientIndex1);
+                    n2 = calculateCornerValue(x2, y2, gradientIndex2);
 
                     // Add contributions from each corner to get the final noise value.
                     // The result is scaled to return values in the interval [-1,1].
-                    return 70.0f * (nCorner0 + nCorner1 + nCorner2);
+
+                    return (35.0 * (n0 + n1 + n2)) + 0.5;
+
+                    return 70.0 * (n0 + n1 + n2);
             }
 
             float signedFBM(float xPos, float yPos)
@@ -182,10 +202,8 @@ Shader "Hidden/NewImageEffectShader"
                 _DitherMax = max(_DitherMin, _DitherMax);
                 _DitherMin = min(_DitherMin, ditherDirectionCheck);
 
-                //clip(Height+ dither < noise? -1: 1 )
                 float offset = 0.5f / _PixelPerTile;
-                //offset + (round(frac(i.worldPos.x) * _PixelPerTile) / _PixelPerTile)
-                //frac(i.worldPos.x) * _PixelPerTile;
+
                 float xPixel = floor(frac(i.worldPos.x) * _PixelPerTile);
                 float yPixel = floor(frac(i.worldPos.y) * _PixelPerTile);
 
@@ -194,12 +212,19 @@ Shader "Hidden/NewImageEffectShader"
 
                 //float simplexResult = signedFBM(xTile + (xPixel / (float)_PixelPerTile), yTile + (yPixel / (float)_PixelPerTile));
                 //float simplexResult = signedRawNoise(xTile + (xPixel / (float)_PixelPerTile), yTile + (yPixel / (float)_PixelPerTile));
-                float simplexResult = signedRawNoise(i.worldPos.x, i.worldPos.y);
                 
+                //float simplexResult = signedRawNoise(i.worldPos.x, i.worldPos.y);
+                
+                float C = signedRawNoise(xTile, yTile, 0.01);
 
-                return fixed4(simplexResult, simplexResult, 1, 1);
+                float2 testF2 = float2(1,0);
 
-                clip(simplexResult < _DitherMin ? -1 : 1);
+                //return fixed4((gradient2D[7].y * 0.5) + 0.5 ,0,0,1);
+
+                return fixed4(C, frac(C + (1.0/3.0)), frac(C + (2.0/3.0)), 1);
+                //return fixed4(simplexResult, calculateCornerValue(hashf(xTile), hashf(yTile), 0) / 255, 1, 1);
+
+                //clip(simplexResult < _DitherMin ? -1 : 1);
 
                 int ditherOffset = ditherMap[((uint)xPixel % 4) + (((uint)yPixel % 4) * 4)];
 
