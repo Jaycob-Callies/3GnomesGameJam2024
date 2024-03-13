@@ -1,4 +1,0 @@
-repository "3GnomesJam@Commettey_Games@cloud"
-  path "/"
-    br "/main"
-    co "/main"
