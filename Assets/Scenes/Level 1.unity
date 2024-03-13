@@ -654,14 +654,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121d77141c936314abee3f2e69da237c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Spellbook: {fileID: 6940716373666172018, guid: 004492399529c744bbb0026322f50174, type: 3}
+  Spellbook: {fileID: 6940716373666172018, guid: 21d5f0a498267684483f4e3c04599606, type: 3}
   DroppedHearts: {fileID: 8576851658624310931, guid: 114adc1dd15d8d34c916bd2205471b55, type: 3}
   Enemies:
-  - {fileID: 2394523440279832276, guid: 2222c8e3a00392e479f0351b5d203bd2, type: 3}
+  - {fileID: 2394523440279832276, guid: 58d45014731880d40873081dabaaf51d, type: 3}
   CurrentSpells: 000000000000000000000000
   SpellObjects:
   - {fileID: 0}
-  - {fileID: 7416687659096545983, guid: 9164340c0f002ee49bc8e7bc547b530d, type: 3}
+  - {fileID: 7416687659096545983, guid: a2f9753f47e3ea94a8af1c1a1d5be9ae, type: 3}
   - {fileID: 7416687659096545983, guid: 58d8914fa9029194ba622f60ed0dcb1b, type: 3}
   - {fileID: 7416687659096545983, guid: cf8376522a7f270478a2731bffbc1b9a, type: 3}
   - {fileID: 7416687659096545983, guid: 7f338736c9067654e853d6eaee3e5673, type: 3}
@@ -1464,10 +1464,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1053561118}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22791b4623416dc4bba450f96ab7c0e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 457987f415df2c449be45357eb00a6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 5
 --- !u!212 &1053561120
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2867,7 +2867,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1857941192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 608cbde35a93df24d817ccb1a88a43c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5848575ad559bc548a1f89383d997474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1053561121}
