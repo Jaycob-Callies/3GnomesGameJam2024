@@ -66,6 +66,11 @@ public class TerrainSpriteController : MonoBehaviour
             floatPermutation.Add((float)intPermutation[pIndex]);
 		}
 
+        //get cameraScale
+        float cameraX = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, Camera.main.farClipPlane - 1.0f)).x - Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, Camera.main.farClipPlane - 1.0f)).x;
+        float cameraY = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, Camera.main.farClipPlane - 1.0f)).y - Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, Camera.main.farClipPlane - 1.0f)).y;
+        float cameraEccentricity = Mathf.Max(cameraX, cameraY) / Mathf.Min(cameraX, cameraY);
+
 
         List<Material> convertingMaterials = new List<Material>();
         int spriteCount = initTexture.height / initTexture.width;
@@ -108,14 +113,12 @@ public class TerrainSpriteController : MonoBehaviour
             spriteLayers[spriteLayers.Count - 1].transform.position = Camera.main.transform.position + Vector3.back;
             spriteLayers[spriteLayers.Count - 1].transform.localScale = Camera.main.orthographicSize * Vector3.one;
             tempR.material = convertingMaterials[convertingMaterials.Count - 1];
-            float cameraX = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, Camera.main.farClipPlane - 1.0f )).x - Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, Camera.main.farClipPlane - 1.0f)).x;
-            float cameraY = Camera.main.ViewportToWorldPoint(new Vector3(1f, 1f, Camera.main.farClipPlane - 1.0f )).x - Camera.main.ViewportToWorldPoint(new Vector3(0f, 0f, Camera.main.farClipPlane - 1.0f)).x;
             Mesh m = new Mesh();
             m.vertices = new Vector3[4] {
-                new Vector3(-cameraX / 2f,-cameraY / 2f,0),
-                new Vector3(cameraX / 2f,-cameraY / 2f,0),
-                new Vector3(-cameraX / 2f,cameraY / 2f,0),
-                new Vector3(cameraX / 2f,cameraY / 2f,0)
+                new Vector3(-1,-1 ,0),
+                new Vector3(1 ,-1 ,0),
+                new Vector3(-1,1,0),
+                new Vector3(1,1,0)
             };
             m.triangles = new int[6]
             {
@@ -136,6 +139,7 @@ public class TerrainSpriteController : MonoBehaviour
                 new Vector2(1, 1)
             };
             tempF.mesh = m;
+            spriteLayers[spriteLayers.Count - 1].transform.localScale = Camera.main.orthographicSize * Vector3.one * cameraEccentricity;
 
             //tempSP.sprite = Sprite.Create(initTexture, new Rect(0, initTexture.width * spriteIndex, initTexture.width, initTexture.width), Vector2.zero);
         }
@@ -157,9 +161,12 @@ public class TerrainSpriteController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for(int spriteIndex = 0; spriteIndex < spriteLayers.Count; spriteIndex++)
+
+
+        for (int spriteIndex = 0; spriteIndex < spriteLayers.Count; spriteIndex++)
 		{
             spriteLayers[spriteIndex].transform.position = Camera.main.transform.position + (Vector3.forward * ((Camera.main.farClipPlane / 2f) - (spriteIndex * 1f)));
+            //spriteLayers[spriteIndex].transform.localScale = Camera.main.orthographicSize * Vector3.one * cameraEccentricity;
             //g.transform.position
             //g.transform.position = new Vector3(g.transform.position.x - Camera.main.orthographicSize, g.transform.position.y - Camera.main.orthographicSize, g.transform.position.z) ;
             //g.transform.localScale = Camera.main.orthographicSize * Vector3.one;
