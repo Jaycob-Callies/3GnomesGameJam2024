@@ -7,17 +7,17 @@ public class SpellAttacks : MonoBehaviour {
 
     public bool SlowEffect;
     public bool StunEffect;
-    float timer;
+    //float timer;
 
-    bool isEffect;
+    //bool isEffect;
 
     private void Update()
     {
-        if(isEffect == true && StunEffect)
-        {
-            timer += Time.deltaTime;
+        //if(isEffect == true && StunEffect)
+        //{
+        //    timer += Time.deltaTime;
 
-        }
+        //}
     }
 
     private void OnCollisionEnter2D(Collision2D col) {
@@ -25,14 +25,15 @@ public class SpellAttacks : MonoBehaviour {
             col.gameObject.GetComponent<Enemy>().HitEnemy(Damage);
             if (SlowEffect == true)
             {
-                col.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.2f, 0.5f, 0.2f);
-                float MS = col.gameObject.GetComponent<Enemy>().MoveSpeed;
-                col.gameObject.GetComponent<Enemy>().MoveSpeed = MS/ 2;
+                //col.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.2f, 0.5f, 0.2f);
+                //float MS = col.gameObject.GetComponent<Enemy>().MoveSpeed;
+                col.gameObject.GetComponent<Enemy>().slowEnemy(0.5f, 5f, new Color(0.2f, 0.5f, 0.2f));// = MS/ 2;
             }
             if (StunEffect == true) {
-                isEffect = true;
-                col.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0.0f);
-                col.gameObject.GetComponent<Enemy>().MoveSpeed = 0;
+                //isEffect = true;
+                //col.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0.0f);
+                //col.gameObject.GetComponent<Enemy>().MoveSpeed = 0;
+                col.gameObject.GetComponent<Enemy>().slowEnemy(1.0f, 2f, new Color(1f, 1f, 0.0f));
             }
         }
     }

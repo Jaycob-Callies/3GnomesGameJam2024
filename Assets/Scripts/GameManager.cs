@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+
 public class GameManager : MonoBehaviour {
     public GameObject Spellbook; //the spellbook gameobject that drops from enemies
     public GameObject DroppedHearts; //the Heart gameobject that drops from enemies
@@ -8,8 +10,7 @@ public class GameManager : MonoBehaviour {
     public GameObject[] SpellObjects;
 
     public int HP;
-
     public int GrantSpell() {
-        return Random.Range(1, 6); // the second number must be 1 higher than the ammount of spells
+        return UnityEngine.Random.Range(1, 6); // the second number must be 1 higher than the ammount of spells
     }
 }
