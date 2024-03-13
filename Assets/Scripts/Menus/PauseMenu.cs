@@ -36,6 +36,7 @@ public class PauseMenu : MonoBehaviour {
     }
 
     public void MM() {
+        this.GM.ResetStats();
         Time.timeScale = 1;
         GameIsPaused = false;
         SceneManager.LoadScene(0);

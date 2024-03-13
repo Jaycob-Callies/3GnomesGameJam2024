@@ -25,4 +25,9 @@ public class GameManager : MonoBehaviour {
     public int GrantSpell() {
         return UnityEngine.Random.Range(1, 6); // the second number must be 1 higher than the ammount of spells
     }
+	public void ResetStats(){ 
+        TimePlayed = 0f;
+        SpellsCast = EnemiesKilled = ItemsGrabbed = 0;
+        LevelReached = 1;
+    }
 }
