@@ -39,13 +39,20 @@ public class Enemy : MonoBehaviour {
     private GameManager GM;
     private TeleporterController TC = null;
     private HeartHolder HH;
+	public List<Sprite> upSprites = new List<Sprite>();
+	public List<Sprite> leftSprites = new List<Sprite>();
+	public List<Sprite> downSprites = new List<Sprite>();
+    private GameObject player = null;
 
-    public int HP;
+	public int HP;
     public float currentSpeed { get { return MoveSpeed * slowTracker.getMoveSpeedMultiplier(); } }
     public float MoveSpeed;
     public int DMG;
+	private float spawnedAtTime = 0;
+    public float animationFramteRate = -1;
 
-    private delegate void changeField();
+
+	private delegate void changeField();
     private SpellSlowTracker slowTracker = new SpellSlowTracker();
 
     public void slowEnemy(float slowStrength, float durationSeconds, Color newColor)
@@ -57,12 +64,43 @@ public class Enemy : MonoBehaviour {
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         HH = GameObject.Find("HeartHolder").GetComponent<HeartHolder>();
 		TC = GameObject.FindFirstObjectByType<TeleporterController>();
+        this.spawnedAtTime = UnityEngine.Time.time;
+        player = GameObject.Find("Player");
+        if (this.animationFramteRate == -1)
+        {
+            this.animationFramteRate = this.upSprites.Count;
+        }
 	}
     private void Update() {
         //This is literally all the code for making enemies move at the player its just 1 line
-        transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player").transform.position, currentSpeed * Time.deltaTime);
-        this.gameObject.GetComponent<SpriteRenderer>().color = this.slowTracker.getColor();
-    }
+        Vector3 movementVector = player.transform.position - transform.position;
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, currentSpeed * Time.deltaTime);
+
+        SpriteRenderer sR = this.gameObject.GetComponent<SpriteRenderer>();
+        bool travelVertical = (Mathf.Abs(movementVector.y) > Mathf.Abs(movementVector.x));
+
+		if (travelVertical && movementVector.y > 0)
+		{
+            sR.sprite = upSprites[Mathf.FloorToInt(UnityEngine.Time.time % this.animationFramteRate)];
+			sR.flipX = false;
+		}
+        else if (travelVertical)
+		{
+			sR.sprite = downSprites[Mathf.FloorToInt(UnityEngine.Time.time % this.animationFramteRate)];
+			sR.flipX = false;
+		}
+        else if (!travelVertical && movementVector.x < 0) {
+			sR.sprite = leftSprites[Mathf.FloorToInt(UnityEngine.Time.time % this.animationFramteRate)];
+			sR.flipX = false;
+		}
+        else
+        {
+			sR.sprite = leftSprites[Mathf.FloorToInt(UnityEngine.Time.time % this.animationFramteRate)];
+            sR.flipX = true;
+		}
+
+		sR.color = this.slowTracker.getColor();
+	}
 
     public void HitEnemy(int DamageTaken) {
         HP-=DamageTaken;
