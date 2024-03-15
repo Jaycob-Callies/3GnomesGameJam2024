@@ -256,18 +256,18 @@ public class TerrainController : MonoBehaviour
     {
         if (!updatedOnce)
         {
-            Debug.Log("2");
-            Debug.Log(this.shader.name);
-            Debug.Log("3");
-            for(int i = 0; i< this.noise.getPermutation().Length; i = i + 16)
-            {
-                string s = "";
-                for (int j = i; j < i + 16; j++)
-                {
-                    s = s + this.noise.getPermutation()[j] + ", ";
-                }
-                Debug.Log(s);
-            }
+            //Debug.Log("2");
+            //Debug.Log(this.shader.name);
+            //Debug.Log("3");
+            //for(int i = 0; i< this.noise.getPermutation().Length; i = i + 16)
+            //{
+            //    string s = "";
+            //    for (int j = i; j < i + 16; j++)
+            //    {
+            //        s = s + this.noise.getPermutation()[j] + ", ";
+            //    }
+            //    Debug.Log(s);
+            //}
             terrainSpriteController.Initialize(this.shader, spriteMap, this.noise.getPermutation(), this.spriteCutoff, this.ditherPercent, this.terrainScale);
 
             updatedOnce = !updatedOnce;

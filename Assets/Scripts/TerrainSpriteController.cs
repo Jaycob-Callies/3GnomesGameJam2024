@@ -33,7 +33,7 @@ public class TerrainSpriteController : MonoBehaviour
                 ditherMin = ditherMax = -1.0f;
             }
 
-            Debug.Log("Sprite " + spriteIndex + ": ( " + ditherMin.ToString() + ", " + ditherMax.ToString() + " )");
+            //Debug.Log("Sprite " + spriteIndex + ": ( " + ditherMin.ToString() + ", " + ditherMax.ToString() + " )");
 
             spriteLayers[spriteIndex].GetComponent<MeshRenderer>().material.SetFloat("_DitherMax", ditherMax);
             spriteLayers[spriteIndex].GetComponent<MeshRenderer>().material.SetFloat("_DitherMin", ditherMin);

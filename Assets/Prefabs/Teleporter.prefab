@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6319002781777014924}
   - component: {fileID: 2600702663498839825}
-  - component: {fileID: 357569655667485863}
   - component: {fileID: -4595068161067539089}
+  - component: {fileID: 6193027557124864617}
   m_Layer: 0
   m_Name: Teleporter
   m_TagString: Untagged
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7077761299344403201}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2600702663498839825
 SpriteRenderer:
@@ -86,18 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &357569655667485863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7077761299344403201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d198e2f520ff7b34da22839e36bec31c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &-4595068161067539089
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -133,3 +121,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &6193027557124864617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7077761299344403201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d198e2f520ff7b34da22839e36bec31c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleporterDelay: 3
+  animationType: 0
