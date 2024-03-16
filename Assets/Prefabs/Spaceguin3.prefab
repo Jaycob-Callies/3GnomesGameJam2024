@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2551405585357339076}
   - component: {fileID: 1638250277722584954}
   m_Layer: 7
-  m_Name: Spaceguin2
+  m_Name: Spaceguin3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1827461706, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  m_Sprite: {fileID: 1140758528, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,24 +99,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upSprites:
-  - {fileID: -1538872740, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
-  - {fileID: -2095525820, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
-  - {fileID: -1538872740, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
-  - {fileID: 1561859530, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: -928166056, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: 1434358167, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: -928166056, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: -1147854600, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
   leftSprites:
-  - {fileID: -364626313, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
-  - {fileID: 1337952198, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
-  - {fileID: -364626313, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
-  - {fileID: 815117026, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: 1669516285, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: -1281099977, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: 1669516285, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: -147184240, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
   downSprites:
-  - {fileID: -1827461706, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
-  - {fileID: 300212420, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
-  - {fileID: -1827461706, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
-  - {fileID: 1269634359, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
-  HP: 10
-  MoveSpeed: 3
+  - {fileID: 1140758528, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: -1275708269, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: 1140758528, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: 1549279928, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  HP: 3
+  MoveSpeed: 5
   DMG: 1
-  animationFramteRate: 6
+  animationFramteRate: 16
 --- !u!61 &1638250277722584954
 BoxCollider2D:
   m_ObjectHideFlags: 0

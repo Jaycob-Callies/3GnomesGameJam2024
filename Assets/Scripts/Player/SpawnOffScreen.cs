@@ -20,7 +20,7 @@ public class SpawnOffScreen : MonoBehaviour {
             ranDelay = Random.Range(3,8);
             TimeSinceLastSpawn = 0;
 
-            GameObject selectedToSpawn = Enemies[Random.Range(0, Enemies.Count)];
+            GameObject selectedToSpawn = Enemies[Mathf.RoundToInt((Random.value * (Enemies.Count)) - .5f)];
 
 			//right now it only spawns a single type of enemy because it just has [0] written
 			for (int i = 0; i < Random.Range(1, 4); i++) {

@@ -116,7 +116,7 @@ MonoBehaviour:
   HP: 5
   MoveSpeed: 2
   DMG: 1
-  animationFramteRate: -1
+  animationFramteRate: 4
 --- !u!61 &1638250277722584954
 BoxCollider2D:
   m_ObjectHideFlags: 0

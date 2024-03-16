@@ -2446,6 +2446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemies:
   - {fileID: 2394523440279832276, guid: 58d45014731880d40873081dabaaf51d, type: 3}
+  - {fileID: 2394523440279832276, guid: c3a30b73f5832334e88e956bdaef54af, type: 3}
   - {fileID: 2394523440279832276, guid: 1c7432a0f69bda544bb17ebfe30c8348, type: 3}
   canSpawn: 1
 --- !u!1 &1121418208
@@ -4194,11 +4195,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2551405585357339076, guid: 58d45014731880d40873081dabaaf51d, type: 3}
       propertyPath: HP
-      value: 10
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551405585357339076, guid: 58d45014731880d40873081dabaaf51d, type: 3}
+      propertyPath: DMG
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2551405585357339076, guid: 58d45014731880d40873081dabaaf51d, type: 3}
       propertyPath: MoveSpeed
-      value: 4
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551405585357339076, guid: 58d45014731880d40873081dabaaf51d, type: 3}
+      propertyPath: animationFramteRate
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2629573756449549776, guid: 58d45014731880d40873081dabaaf51d, type: 3}
       propertyPath: m_LocalScale.x
