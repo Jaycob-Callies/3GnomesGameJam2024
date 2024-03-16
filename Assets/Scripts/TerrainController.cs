@@ -221,7 +221,6 @@ public class TerrainController : MonoBehaviour
     [HideInInspector]
     public List<Sprite> spriteList = new List<Sprite>();
     private SimplexNoise noise = new SimplexNoise();
-    private TerrainCollisionController terrainCollisionController = null;
     private TerrainSpriteController terrainSpriteController = null;
 
     private bool updatedOnce = false;
@@ -230,7 +229,6 @@ public class TerrainController : MonoBehaviour
     void Start()
     {
         GameObject go = this.gameObject;
-        this.terrainCollisionController = go.AddComponent<TerrainCollisionController>();
         this.terrainSpriteController = go.AddComponent<TerrainSpriteController>();
 
         this.noise = new SimplexNoise();
