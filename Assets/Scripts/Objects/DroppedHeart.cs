@@ -14,16 +14,7 @@ public class DroppedHeart : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Player") {
-            if (GM.HP < 7) {
-                //This is where the player Gets new hearts
-                HH.Hearts[GM.HP].SetActive(true);
-                GM.HP += 1;
-                Debug.Log("MaxHp = " + GM.HP);
-            }
-            else {
-                Debug.Log("Cant Gain more HP");
-            }
-
+            GM.gainHealth(1);
             GM.ItemsGrabbed += 1;
             Destroy(gameObject);
         }

@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour {
 
     private GameManager GM;
     private TeleporterController TC = null;
+    private TerrainCollisionController TerrColl = null;
     private HeartHolder HH;
 	public List<Sprite> upSprites = new List<Sprite>();
 	public List<Sprite> leftSprites = new List<Sprite>();
@@ -64,7 +65,8 @@ public class Enemy : MonoBehaviour {
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         HH = GameObject.Find("HeartHolder").GetComponent<HeartHolder>();
 		TC = GameObject.FindFirstObjectByType<TeleporterController>();
-        this.spawnedAtTime = UnityEngine.Time.time;
+		TerrColl = GameObject.FindFirstObjectByType<TerrainCollisionController>();
+		this.spawnedAtTime = UnityEngine.Time.time;
         player = GameObject.Find("Player");
         if (this.animationFramteRate == -1)
         {
@@ -73,8 +75,9 @@ public class Enemy : MonoBehaviour {
 	}
     private void Update() {
         //This is literally all the code for making enemies move at the player its just 1 line
-        Vector3 movementVector = player.transform.position - transform.position;
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, currentSpeed * Time.deltaTime);
+        Vector3 movementVector = (player.transform.position - transform.position).normalized;
+        movementVector = TerrColl.getTerrainVelocity(new Vector2(this.transform.position.x, this.transform.position.y), new Vector2(movementVector.x, movementVector.y));
+        transform.position += movementVector * currentSpeed * Time.deltaTime;
 
         SpriteRenderer sR = this.gameObject.GetComponent<SpriteRenderer>();
         bool travelVertical = (Mathf.Abs(movementVector.y) > Mathf.Abs(movementVector.x));
@@ -122,8 +125,7 @@ public class Enemy : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag == "Player") {
-            GM.HP -= DMG;
-            HH.CheckHearts();
+            GM.takeDamage(DMG);
         }
     }
 }

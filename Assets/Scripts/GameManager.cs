@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
     public GameObject[] SpellObjects;
 
     [Header("Info")]
-    public int HP;
+    public int HP = 3;
     public bool GameEnded;
 
     public int[] CurrentSpells = new int[3]; // this is how many spells you can hold and which IDs are in what spots
@@ -29,5 +29,26 @@ public class GameManager : MonoBehaviour {
         TimePlayed = 0f;
         SpellsCast = EnemiesKilled = ItemsGrabbed = 0;
         LevelReached = 1;
+	}
+	public void takeDamage(int damage)
+    {
+		this.HP -= Mathf.Abs(damage);
+		GameObject.FindAnyObjectByType<HeartHolder>().UpdateHearts();
+		if (this.HP <= 0)
+		{
+			GameObject.FindAnyObjectByType<LoseScreen>().GameOver();
+		}
+	}
+
+	public void gainHealth(int health)
+    {
+        this.HP += Mathf.Abs(health);
+        this.HP = Mathf.Min(this.HP, 7);
+        GameObject.FindAnyObjectByType<HeartHolder>().UpdateHearts();
+
+	}
+    public int getHP()
+    {
+        return this.HP;
     }
 }

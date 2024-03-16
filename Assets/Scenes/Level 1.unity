@@ -1066,6 +1066,18 @@ PrefabInstance:
       propertyPath: terrainScale
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: collisionSpeed.Array.data[0]
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: collisionSpeed.Array.data[1]
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: collisionSpeed.Array.data[3]
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3304369084875275651, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: m_Name
       value: TerrainPreFab

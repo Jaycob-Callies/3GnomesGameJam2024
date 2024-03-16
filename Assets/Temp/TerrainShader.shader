@@ -47,8 +47,8 @@ Shader "Hidden/NewImageEffectShader"
 
 
             static const float2 gradient2D[9] = {
-                float2(1.0, 1.0), float2(1.0, 1.0), float2(1.0, -1.0),
-                float2(0.0, -1.0), float2(0.0, 0.0), float2(-1.0, 0.0),
+                float2(1.0, 1.0), float2(1.0, 0.0), float2(1.0, -1.0),
+                float2(0.0, 1.0), float2(0.0, 0.0), float2(0.0, -1.0),
                 float2(-1.0, 1.0), float2(-1.0, 0.0), float2(-1.0, -1.0)
             };
 

@@ -36,10 +36,10 @@ public class SimplexNoise
 
 	private static Vector2[] GRADIENT_2D = new Vector2[9] 
     {
-        new Vector2(1.0f, 1.0f), new Vector2(-1.0f, 1.0f), new Vector2(1.0f, -1.0f),
-        new Vector2(-1.0f, -1.0f), new Vector2(1.0f, 0.0f), new Vector2(-1.0f, 0.0f),
-        new Vector2(0.0f, 1.0f), new Vector2(0.0f, -1.0f), new Vector2(1.0f, -0.0f)
-    };
+        new Vector2(1f, 1f), new Vector2(1f, 0f), new Vector2(1f, -1f),
+        new Vector2(0f, 1f), new Vector2(0f, 0f), new Vector2(0f, -1f),
+        new Vector2(-1f, 1f), new Vector2(-1f, 0f), new Vector2(-1f, -1f)
+	};
 
     public SimplexNoise() {
         ORIGINAL_PERMUTATION.CopyTo(this.permutation, 0);
@@ -212,6 +212,8 @@ public class TerrainController : MonoBehaviour
 
     public Texture2D spriteMap = null;
     public List<float> spriteCutoff = new List<float>();
+    [Tooltip("Multiplies movement speed, Negative value denotes hard barriers / walls")]
+    public List<float> collisionSpeed = new List<float>();
     public int seed = 0;
     public bool randomSeed = true;
     public Shader shader = null;
@@ -269,8 +271,8 @@ public class TerrainController : MonoBehaviour
             //    Debug.Log(s);
             //}
             terrainSpriteController.Initialize(this.shader, spriteMap, this.noise.getPermutation(), this.spriteCutoff, this.ditherPercent, this.terrainScale);
-
-            updatedOnce = !updatedOnce;
+            terrainCollisionController.Initialize(this.seed, this.spriteCutoff, this.collisionSpeed, this.ditherPercent, this.terrainScale);
+			updatedOnce = !updatedOnce;
         }
     }
 
@@ -295,8 +297,10 @@ public class TerrainController : MonoBehaviour
             this.noise.setSeed(this.seed);
             terrainSpriteController.setSimplexChanges(this.terrainScale, this.noise.getPermutation());
         }
+
+		while (spriteCount != collisionSpeed.Count)
+        {
+            collisionSpeed.Add(1f);
+        }
 	}
-
-
-
 }
