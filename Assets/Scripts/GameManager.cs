@@ -5,7 +5,6 @@ public class GameManager : MonoBehaviour {
     [Header("Prefabs")]
     public GameObject Spellbook; //the spellbook gameobject that drops from enemies
     public GameObject DroppedHearts; //the Heart gameobject that drops from enemies
-    public GameObject[] Enemies; //the Enemies array
     public GameObject[] SpellObjects;
 
     [Header("Info")]

@@ -114,7 +114,7 @@ MonoBehaviour:
   - {fileID: 1140758528, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
   - {fileID: 1549279928, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
   HP: 5
-  MoveSpeed: 5
+  MoveSpeed: 4
   DMG: 1
   animationFramteRate: 8
 --- !u!61 &1638250277722584954

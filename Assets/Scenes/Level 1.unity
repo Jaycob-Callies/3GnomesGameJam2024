@@ -1025,8 +1025,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Spellbook: {fileID: 6940716373666172018, guid: 21d5f0a498267684483f4e3c04599606, type: 3}
   DroppedHearts: {fileID: 8576851658624310931, guid: 114adc1dd15d8d34c916bd2205471b55, type: 3}
-  Enemies:
-  - {fileID: 2394523440279832276, guid: 58d45014731880d40873081dabaaf51d, type: 3}
   SpellObjects:
   - {fileID: 0}
   - {fileID: 7416687659096545983, guid: a2f9753f47e3ea94a8af1c1a1d5be9ae, type: 3}
@@ -2446,6 +2444,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7528d39019326394097fbe4680d15e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Enemies:
+  - {fileID: 2394523440279832276, guid: 58d45014731880d40873081dabaaf51d, type: 3}
+  - {fileID: 2394523440279832276, guid: 1c7432a0f69bda544bb17ebfe30c8348, type: 3}
   canSpawn: 1
 --- !u!1 &1121418208
 GameObject:
