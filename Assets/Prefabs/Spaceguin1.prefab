@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2394523440279832276}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4264885525754354516
 SpriteRenderer:
@@ -98,9 +98,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0cacb0738ccb248a8e0af77ff30e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upSprites:
+  - {fileID: -1383569776, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: -38437375, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: -1383569776, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: -545619659, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  leftSprites:
+  - {fileID: -535347340, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: 498255649, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: -535347340, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: 559610659, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  downSprites:
+  - {fileID: 1561280932, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: 1736598597, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: 1561280932, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
+  - {fileID: -574696980, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
   HP: 5
   MoveSpeed: 2
   DMG: 1
+  animationFramteRate: -1
 --- !u!61 &1638250277722584954
 BoxCollider2D:
   m_ObjectHideFlags: 0

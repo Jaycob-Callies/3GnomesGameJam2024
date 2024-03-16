@@ -38,14 +38,22 @@ public class Enemy : MonoBehaviour {
 
     private GameManager GM;
     private TeleporterController TC = null;
+    private TerrainCollisionController TerrColl = null;
     private HeartHolder HH;
+	public List<Sprite> upSprites = new List<Sprite>();
+	public List<Sprite> leftSprites = new List<Sprite>();
+	public List<Sprite> downSprites = new List<Sprite>();
+    private GameObject player = null;
 
-    public int HP;
+	public int HP;
     public float currentSpeed { get { return MoveSpeed * slowTracker.getMoveSpeedMultiplier(); } }
     public float MoveSpeed;
     public int DMG;
+	private float spawnedAtTime = 0;
+    public float animationFramteRate = -1;
 
-    private delegate void changeField();
+
+	private delegate void changeField();
     private SpellSlowTracker slowTracker = new SpellSlowTracker();
 
     public void slowEnemy(float slowStrength, float durationSeconds, Color newColor)
@@ -57,12 +65,45 @@ public class Enemy : MonoBehaviour {
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         HH = GameObject.Find("HeartHolder").GetComponent<HeartHolder>();
 		TC = GameObject.FindFirstObjectByType<TeleporterController>();
+		TerrColl = GameObject.FindFirstObjectByType<TerrainCollisionController>();
+		this.spawnedAtTime = UnityEngine.Time.time;
+        player = GameObject.Find("Player");
+        if (this.animationFramteRate == -1)
+        {
+            this.animationFramteRate = this.upSprites.Count;
+        }
 	}
     private void Update() {
         //This is literally all the code for making enemies move at the player its just 1 line
-        transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player").transform.position, currentSpeed * Time.deltaTime);
-        this.gameObject.GetComponent<SpriteRenderer>().color = this.slowTracker.getColor();
-    }
+        Vector3 movementVector = (player.transform.position - transform.position).normalized;
+        movementVector = TerrColl.getTerrainVelocity(new Vector2(this.transform.position.x, this.transform.position.y), new Vector2(movementVector.x, movementVector.y));
+        transform.position += movementVector * currentSpeed * Time.deltaTime;
+
+        SpriteRenderer sR = this.gameObject.GetComponent<SpriteRenderer>();
+        bool travelVertical = (Mathf.Abs(movementVector.y) > Mathf.Abs(movementVector.x));
+
+		if (travelVertical && movementVector.y > 0)
+		{
+            sR.sprite = upSprites[Mathf.FloorToInt(UnityEngine.Time.time % this.animationFramteRate)];
+			sR.flipX = false;
+		}
+        else if (travelVertical)
+		{
+			sR.sprite = downSprites[Mathf.FloorToInt(UnityEngine.Time.time % this.animationFramteRate)];
+			sR.flipX = false;
+		}
+        else if (!travelVertical && movementVector.x < 0) {
+			sR.sprite = leftSprites[Mathf.FloorToInt(UnityEngine.Time.time % this.animationFramteRate)];
+			sR.flipX = false;
+		}
+        else
+        {
+			sR.sprite = leftSprites[Mathf.FloorToInt(UnityEngine.Time.time % this.animationFramteRate)];
+            sR.flipX = true;
+		}
+
+		sR.color = this.slowTracker.getColor();
+	}
 
     public void HitEnemy(int DamageTaken) {
         HP-=DamageTaken;
@@ -84,8 +125,7 @@ public class Enemy : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag == "Player") {
-            GM.HP -= DMG;
-            HH.CheckHearts();
+            GM.takeDamage(DMG);
         }
     }
 }
