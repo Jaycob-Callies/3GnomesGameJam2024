@@ -40,8 +40,8 @@ public class TerrainCollisionController : MonoBehaviour
         }
 		this.terrainScale = terrainScale;
 	}
-	// Start is called before the first frame update
-	void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         
     }
@@ -181,6 +181,6 @@ public class TerrainCollisionController : MonoBehaviour
             checkedOnce = true;
 			return new Vector2(result.x, result.y);
 		}
-
+        
     }
 }
