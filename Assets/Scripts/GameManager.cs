@@ -36,13 +36,17 @@ public class GameManager : MonoBehaviour {
 		GameObject.FindAnyObjectByType<HeartHolder>().UpdateHearts();
 		if (this.HP <= 0)
 		{
-			GameObject.FindAnyObjectByType<LoseScreen>().GameOver();
+			GameObject.FindAnyObjectByType<LoseScreen>(FindObjectsInactive.Include).GameOver();
 		}
 	}
 
-	public void gainHealth(int health)
+	public void gainHealth(int health, bool setter = false)
     {
         this.HP += Mathf.Abs(health);
+        if (setter)
+        {
+            this.HP = health;
+		}
         this.HP = Mathf.Min(this.HP, 7);
         GameObject.FindAnyObjectByType<HeartHolder>().UpdateHearts();
 

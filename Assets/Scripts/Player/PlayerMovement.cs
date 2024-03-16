@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Camera cam;
+    private TerrainCollisionController collisionController = null;
 
     Vector2 movement;
     Vector2 mousePos;
@@ -25,7 +26,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+		if (collisionController == null)
+		{
+			collisionController = GameObject.FindAnyObjectByType<TerrainCollisionController>();
+		}
+		Vector2 collisionMovement = collisionController.getTerrainVelocity(this.transform.position, this.movement.normalized);
+        rb.MovePosition(rb.position + collisionMovement * moveSpeed * Time.fixedDeltaTime) ;
         Vector2 lookDir = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;

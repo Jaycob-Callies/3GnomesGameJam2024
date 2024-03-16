@@ -59,9 +59,12 @@ public class SimplexNoise
         return gradient2D.x * x + gradient2D.y * y;
     }
 
-    public float signedRawNoise(float xPos, float yPos)
-    {
-        float nCorner0, nCorner1, nCorner2;
+    public float signedRawNoise(float xPos, float yPos, float scale = 1f)
+	{
+		xPos = xPos * scale;
+		yPos = yPos * scale;
+
+		float n0, n1, n2;
 
         // Skew the input space to determine which simplex cell we're in
         float skewedCell = (xPos + yPos) * skewingFactor;
@@ -109,31 +112,26 @@ public class SimplexNoise
         int gradientIndex1 = hash(ii + i1 + hash(jj + j1)) % gradientsSize;
         int gradientIndex2 = hash(ii + 1 + hash(jj + 1)) % gradientsSize;
 
-        // Calculate the contribution from the three corners
-        nCorner0 = calculateCornerValue(x0, y0, gradientIndex0);
-        nCorner1 = calculateCornerValue(x1, y1, gradientIndex1);
-        nCorner2 = calculateCornerValue(x2, y2, gradientIndex2);
+		// Calculate the contribution from the three corners
+		n0 = calculateCornerValue(x0, y0, gradientIndex0);
+		n1 = calculateCornerValue(x1, y1, gradientIndex1);
+		n2 = calculateCornerValue(x2, y2, gradientIndex2);
 
         // Add contributions from each corner to get the final noise value.
         // The result is scaled to return values in the interval [-1,1].
-        return 70.0f * (nCorner0 + nCorner1 + nCorner2);
+        return 70.0f * (n0 + n1 + n2);
     }
 
-    public float unsignedRawNoise(float xPos, float yPos)
-    {
-        return signedRawNoise(xPos, yPos) / 2.0f + 0.5f;
-    }
 
     private float calculateCornerValue(float x, float y, int gradientIndex)
     {
-        float corner = 0.0f;
-        float t = 0.5f - x * x - y * y;
-        if (t > 0.0)
+        float corner = 0f;
+        float t = 0.5f - (x * x) - (y * y);
+        if (t > 0.0f)
         {
             t *= t;
             corner = t * t * dot(GRADIENT_2D[gradientIndex], x, y);
         }
-
         return corner;
     }
 

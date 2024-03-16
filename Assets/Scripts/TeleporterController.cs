@@ -16,6 +16,7 @@ public class TeleporterController : MonoBehaviour
 	public GameObject Boss = null;
 	public int teleportTo = -1;
 	private GameObject Arrow = null;
+	private KillKracker KT = null;
 	public void Start()
 	{
 		GM = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -72,6 +73,10 @@ public class TeleporterController : MonoBehaviour
 			this.Boss.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0f) + 3f 
 				* Camera.main.orthographicSize * (Quaternion.Euler(0f, 0f, Random.RandomRange(0f, 360f)) * Vector3.right);
 		}
+		if (KT == null) {
+			KT = GameObject.FindAnyObjectByType<KillKracker>();
+		}
+		KT.UpdateKill();
 	}
 	public void killedBoss()
 	{

@@ -10,14 +10,17 @@ public class MM : MonoBehaviour {
         Debug.Log("Quit Game");
     }
     public void LoadGame() {
-        if (GameObject.Find("GameManager") == true) {
-            GameManager GM = GameObject.Find("GameManager").GetComponent<GameManager>();
-            GM.CurrentSpells[0] = 0;
-            GM.CurrentSpells[1] = 0;
-            GM.CurrentSpells[2] = 0;
-        }
+
         SceneManager.LoadScene(1);
-    }
+		if (GameObject.Find("GameManager") == true)
+		{
+			GameManager GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+			GM.CurrentSpells[0] = 0;
+			GM.CurrentSpells[1] = 0;
+			GM.CurrentSpells[2] = 0;
+			GM.gainHealth(3, true);
+		}
+	}
     public void OpenMM() {
         Menus[1].SetActive(false);
         Menus[0].SetActive(true);

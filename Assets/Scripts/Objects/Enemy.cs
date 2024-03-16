@@ -73,8 +73,12 @@ public class Enemy : MonoBehaviour {
             this.animationFramteRate = this.upSprites.Count;
         }
 	}
-    private void Update() {
+    private void FixedUpdate() {
         //This is literally all the code for making enemies move at the player its just 1 line
+        if (TerrColl == null)
+        {
+            TerrColl = GameObject.FindFirstObjectByType<TerrainCollisionController>();
+		}
         Vector3 movementVector = (player.transform.position - transform.position).normalized;
         movementVector = TerrColl.getTerrainVelocity(new Vector2(this.transform.position.x, this.transform.position.y), new Vector2(movementVector.x, movementVector.y));
         transform.position += movementVector * currentSpeed * Time.deltaTime;
@@ -84,21 +88,21 @@ public class Enemy : MonoBehaviour {
 
 		if (travelVertical && movementVector.y > 0)
 		{
-            sR.sprite = upSprites[Mathf.FloorToInt(UnityEngine.Time.time % this.animationFramteRate)];
+            sR.sprite = upSprites[Mathf.FloorToInt(UnityEngine.Time.time * this.animationFramteRate % upSprites.Count)];
 			sR.flipX = false;
 		}
         else if (travelVertical)
 		{
-			sR.sprite = downSprites[Mathf.FloorToInt(UnityEngine.Time.time % this.animationFramteRate)];
+			sR.sprite = downSprites[Mathf.FloorToInt(UnityEngine.Time.time * this.animationFramteRate % downSprites.Count)];
 			sR.flipX = false;
 		}
         else if (!travelVertical && movementVector.x < 0) {
-			sR.sprite = leftSprites[Mathf.FloorToInt(UnityEngine.Time.time % this.animationFramteRate)];
+			sR.sprite = leftSprites[Mathf.FloorToInt(UnityEngine.Time.time * this.animationFramteRate % leftSprites.Count)];
 			sR.flipX = false;
 		}
         else
         {
-			sR.sprite = leftSprites[Mathf.FloorToInt(UnityEngine.Time.time % this.animationFramteRate)];
+			sR.sprite = leftSprites[Mathf.FloorToInt(UnityEngine.Time.time * this.animationFramteRate % leftSprites.Count)];
             sR.flipX = true;
 		}
 
