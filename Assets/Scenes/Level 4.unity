@@ -1123,7 +1123,7 @@ PrefabInstance:
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: spriteMap
       value: 
-      objectReference: {fileID: 2800000, guid: d826cf94d2a16594c9c8ecbb592770b0, type: 3}
+      objectReference: {fileID: 2800000, guid: c3d9bbec072a1a047b30b5d42da00794, type: 3}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decoDistance
       value: 300
@@ -1134,55 +1134,79 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorations.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: spriteCutoff.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: collisionSpeed.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
-      propertyPath: decorations.Array.data[0]
-      value: 
-      objectReference: {fileID: 2394523440279832276, guid: 25c78afe935cc4e468c021013cb6edf4, type: 3}
-    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorations.Array.data[1]
       value: 
-      objectReference: {fileID: 2394523440279832276, guid: d422e066997470f489f980494424f0a7, type: 3}
+      objectReference: {fileID: 2394523440279832276, guid: c831d84a07ddbf245a92609def6710ba, type: 3}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorations.Array.data[2]
       value: 
-      objectReference: {fileID: 2394523440279832276, guid: 710bfb54591b7bd46a1057cb1c1956f3, type: 3}
+      objectReference: {fileID: 2394523440279832276, guid: 22bf4a39814b26b429c96c134a17446e, type: 3}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorations.Array.data[3]
+      value: 
+      objectReference: {fileID: 2394523440279832276, guid: d1a019a31d1a68a4d8eab5eea1289992, type: 3}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorations.Array.data[4]
       value: 
       objectReference: {fileID: 2394523440279832276, guid: 2ac6efd85477615438812ea8c422be47, type: 3}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: spriteCutoff.Array.data[0]
-      value: -0.68
+      value: -0.92
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: spriteCutoff.Array.data[1]
-      value: 0.23
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: spriteCutoff.Array.data[2]
-      value: 0.79
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: spriteCutoff.Array.data[3]
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: spriteCutoff.Array.data[4]
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: collisionSpeed.Array.data[0]
-      value: 0.33
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: collisionSpeed.Array.data[1]
-      value: 0.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: collisionSpeed.Array.data[3]
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: collisionSpeed.Array.data[4]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: collisionSpeed.Array.data[5]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMaxHeight.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMinHeight.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMaxHeight.Array.data[0]
@@ -1190,31 +1214,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMaxHeight.Array.data[1]
-      value: 0.25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMaxHeight.Array.data[2]
-      value: 0.68
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMaxHeight.Array.data[3]
-      value: -0.47
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorationMaxHeight.Array.data[4]
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMinHeight.Array.data[0]
-      value: 0.2
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMinHeight.Array.data[1]
-      value: -0.28
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMinHeight.Array.data[2]
-      value: -0.57
+      value: 0.36
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMinHeight.Array.data[3]
-      value: -0.71
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorationMinHeight.Array.data[4]
+      value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: 3304369084875275651, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: m_Name
@@ -2512,7 +2544,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemies:
-  - {fileID: 2394523440279832276, guid: 58d45014731880d40873081dabaaf51d, type: 3}
+  - {fileID: 2394523440279832276, guid: c3a30b73f5832334e88e956bdaef54af, type: 3}
+  - {fileID: 2394523440279832276, guid: 09942456004d84a439c2d375a8baaab1, type: 3}
   canSpawn: 1
 --- !u!1 &1121418208
 GameObject:
