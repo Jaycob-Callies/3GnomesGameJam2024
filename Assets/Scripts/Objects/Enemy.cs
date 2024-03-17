@@ -118,7 +118,7 @@ public class Enemy : MonoBehaviour {
 
 		sR.color = this.slowTracker.getColor();
 
-        if (this.range < (player.transform.position - this.transform.position).magnitude)
+        if (this.range > (player.transform.position - this.transform.position).magnitude)
 		{
             this.Attack();
 		}
@@ -151,11 +151,13 @@ public class Enemy : MonoBehaviour {
 		}
         if (rangedAttack == null)//melee
         {
+			Debug.Log(this.name + " did melee damage from " + this.transform.position + " to " + player.transform.position);
             cooldownExpiresAt = cooldown + Time.time;
             GM.takeDamage(DMG);
         }
         else if (rangedAttack != null)
         {
+            cooldownExpiresAt = cooldown + Time.time;
             Quaternion rotateTo = Quaternion.FromToRotation(Vector3.up, (player.transform.position - transform.position).normalized);
             GameObject newProjectile = Instantiate<GameObject>(this.rangedAttack, this.transform.position, rotateTo);
             newProjectile.GetComponent<EnemyProjectile>().GM = this.GM;

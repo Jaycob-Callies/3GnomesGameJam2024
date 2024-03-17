@@ -54,6 +54,10 @@ public class TerrainCollisionController : MonoBehaviour
     }
     public float terrainSpeedAtPoint(Vector2 location)
     {
+		if (cutOffList.Count == 0)
+		{
+			return 1;
+		}
         float height = noise.signedRawNoise(location.x, location.y, terrainScale);
         float percent = 0f;
 
