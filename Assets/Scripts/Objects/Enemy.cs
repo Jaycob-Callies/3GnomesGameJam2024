@@ -51,9 +51,14 @@ public class Enemy : MonoBehaviour {
     public int DMG;
 	private float spawnedAtTime = 0;
     public float animationFramteRate = -1;
+    public float range = 0.5f;
+    public float cooldown = 1f;
+
+    public GameObject rangedAttack = null;
+    private float cooldownExpiresAt = 0f;
 
 
-	private delegate void changeField();
+    private delegate void changeField();
     private SpellSlowTracker slowTracker = new SpellSlowTracker();
 
     public void slowEnemy(float slowStrength, float durationSeconds, Color newColor)
@@ -74,6 +79,7 @@ public class Enemy : MonoBehaviour {
         }
 	}
     private void FixedUpdate() {
+
         //This is literally all the code for making enemies move at the player its just 1 line
         if (TerrColl == null)
         {
@@ -81,7 +87,11 @@ public class Enemy : MonoBehaviour {
 		}
         Vector3 movementVector = (player.transform.position - transform.position).normalized;
         movementVector = TerrColl.getTerrainVelocity(new Vector2(this.transform.position.x, this.transform.position.y), new Vector2(movementVector.x, movementVector.y));
-        transform.position += movementVector * currentSpeed * Time.deltaTime;
+
+        if (this.cooldownExpiresAt > Time.time)//stay still in ranged cooldown
+		{
+            transform.position += movementVector * currentSpeed * Time.deltaTime;
+        }
 
         SpriteRenderer sR = this.gameObject.GetComponent<SpriteRenderer>();
         bool travelVertical = (Mathf.Abs(movementVector.y) > Mathf.Abs(movementVector.x));
@@ -107,6 +117,12 @@ public class Enemy : MonoBehaviour {
 		}
 
 		sR.color = this.slowTracker.getColor();
+
+        if (this.range < (player.transform.position - this.transform.position).magnitude)
+		{
+            this.Attack();
+		}
+
 	}
 
     public void HitEnemy(int DamageTaken) {
@@ -127,9 +143,37 @@ public class Enemy : MonoBehaviour {
 		}
     }
 
+    private void Attack()
+    {
+        if (cooldownExpiresAt > Time.time)
+		{
+            return;
+		}
+        if (rangedAttack == null)//melee
+        {
+            cooldownExpiresAt = cooldown + Time.time;
+            GM.takeDamage(DMG);
+        }
+        else if (rangedAttack != null)
+        {
+            Quaternion rotateTo = Quaternion.FromToRotation(Vector3.up, (player.transform.position - transform.position).normalized);
+            GameObject newProjectile = Instantiate<GameObject>(this.rangedAttack, this.transform.position, rotateTo);
+            newProjectile.GetComponent<EnemyProjectile>().GM = this.GM;
+            newProjectile.GetComponent<EnemyProjectile>().TCC = this.TerrColl;
+        }
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag == "Player") {
-            GM.takeDamage(DMG);
+            this.Attack();
+        }
+    }
+	private void OnCollisionStay2D(Collision2D collision)
+	{
+        if (collision.gameObject.tag == "Player")
+        {
+            this.Attack();
         }
     }
 }
