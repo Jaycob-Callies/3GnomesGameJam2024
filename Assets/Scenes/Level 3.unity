@@ -1166,11 +1166,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: collisionSpeed.Array.data[0]
-      value: 0.33
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: collisionSpeed.Array.data[1]
-      value: 0.6
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: collisionSpeed.Array.data[3]
@@ -2492,13 +2492,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77921779fcf7fb4a91a607f20b17ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CastDelay:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
 --- !u!114 &1053561127
 MonoBehaviour:
   m_ObjectHideFlags: 0

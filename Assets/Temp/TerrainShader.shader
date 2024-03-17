@@ -9,7 +9,7 @@ Shader "Hidden/NewImageEffectShader"
         _Octaves("Simplex Octaves", Integer) = 1
         _Lacunarity("Simplex Lacunarity", Float) = 2.0
         _Gain("Simplex Gain", Float) = 0.5
-        _DitherMain("Min Dither Value (-1,1)", Float) = -1.0
+        _DitherMin("Min Dither Value (-1,1)", Float) = -1.0
         _DitherMax("Max Dither Value (-1,1)", Float) = 1.0
     }
     SubShader
@@ -30,11 +30,11 @@ Shader "Hidden/NewImageEffectShader"
             int _PixelPerTile;
             sampler2D _MainTex;
 
-            static const int ditherMap[16] = {
-                    0,12,3,15,
-                    8,4,11,7,
-                    2,14,1,13,
-                    10,6,9,5
+            static const float ditherMap[16] = {
+                    0.0,  12.0, 3.0,  15.0,
+                    8.0,  4.0,  11.0, 7.0,
+                    2.0,  14.0, 1.0,  13.0,
+                    10.0, 6.0,  9.0,  5.0
             };
 
             float _Permutation[256];
@@ -213,7 +213,7 @@ Shader "Hidden/NewImageEffectShader"
                 
                 float Noise = signedRawNoise(xTile + (xPixel / _PixelPerTile), yTile + (yPixel / _PixelPerTile), _Scale);
                 
-                float ditherOffset = (_DitherMax - _DitherMin) * (ditherMap[int(posMod(xPixel, 4.0) + (posMod(yPixel, 4.0) * 4.0))] / 15.0);
+                float ditherOffset = (_DitherMax - _DitherMin) * ((float)ditherMap[int( posMod(xPixel, 4.0) + (posMod(yPixel, 4.0) * 4.0) )] / 15.0);
 
                 clip(Noise + ditherOffset - _DitherMax);
                 
