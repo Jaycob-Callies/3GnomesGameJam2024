@@ -3625,73 +3625,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681355318}
   m_CullTransparentMesh: 1
---- !u!1001 &1749775735
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2967969620353154181}
-    m_Modifications:
-    - target: {fileID: 6319002781777014924, guid: 70cc1b82fbfb8eb4b9e9e42fbc78d83f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6319002781777014924, guid: 70cc1b82fbfb8eb4b9e9e42fbc78d83f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6319002781777014924, guid: 70cc1b82fbfb8eb4b9e9e42fbc78d83f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6319002781777014924, guid: 70cc1b82fbfb8eb4b9e9e42fbc78d83f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6319002781777014924, guid: 70cc1b82fbfb8eb4b9e9e42fbc78d83f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6319002781777014924, guid: 70cc1b82fbfb8eb4b9e9e42fbc78d83f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6319002781777014924, guid: 70cc1b82fbfb8eb4b9e9e42fbc78d83f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6319002781777014924, guid: 70cc1b82fbfb8eb4b9e9e42fbc78d83f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6319002781777014924, guid: 70cc1b82fbfb8eb4b9e9e42fbc78d83f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6319002781777014924, guid: 70cc1b82fbfb8eb4b9e9e42fbc78d83f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7077761299344403201, guid: 70cc1b82fbfb8eb4b9e9e42fbc78d83f, type: 3}
-      propertyPath: m_Name
-      value: Teleporter Stairs
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 70cc1b82fbfb8eb4b9e9e42fbc78d83f, type: 3}
---- !u!4 &1749775736 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6319002781777014924, guid: 70cc1b82fbfb8eb4b9e9e42fbc78d83f, type: 3}
-  m_PrefabInstance: {fileID: 1749775735}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1749775737 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7077761299344403201, guid: 70cc1b82fbfb8eb4b9e9e42fbc78d83f, type: 3}
-  m_PrefabInstance: {fileID: 1749775735}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1758396127
 GameObject:
   m_ObjectHideFlags: 0
@@ -4485,10 +4418,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: -2795232772375245442, guid: baeffbbbee61be44582dd1a05ff4b08c, type: 3}
-      propertyPath: teleporter
-      value: 
-      objectReference: {fileID: 1749775737}
-    - target: {fileID: -2795232772375245442, guid: baeffbbbee61be44582dd1a05ff4b08c, type: 3}
       propertyPath: killsToNextLevel
       value: 10
       objectReference: {fileID: 0}
@@ -4545,30 +4474,7 @@ PrefabInstance:
       value: TeleporterControllerPreset
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 4536523663947139835, guid: baeffbbbee61be44582dd1a05ff4b08c, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3274002443302034107, guid: baeffbbbee61be44582dd1a05ff4b08c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1749775736}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baeffbbbee61be44582dd1a05ff4b08c, type: 3}
-<<<<<<< Updated upstream
-=======
---- !u!4 &2967969620353154181 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3274002443302034107, guid: baeffbbbee61be44582dd1a05ff4b08c, type: 3}
-  m_PrefabInstance: {fileID: 2967969620353154180}
-  m_PrefabAsset: {fileID: 0}
---- !u!1660057539 &9223372036854775807
-SceneRoots:
-  m_ObjectHideFlags: 0
-  m_Roots:
-  - {fileID: 474288683}
-  - {fileID: 2967969620353154180}
-  - {fileID: 1857941195}
-  - {fileID: 754185338}
-  - {fileID: 501538802}
-  - {fileID: 1053561121}
-  - {fileID: 1328653431}
->>>>>>> Stashed changes
