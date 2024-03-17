@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour {
         Vector3 movementVector = (player.transform.position - transform.position).normalized;
         movementVector = TerrColl.getTerrainVelocity(new Vector2(this.transform.position.x, this.transform.position.y), new Vector2(movementVector.x, movementVector.y));
 
-        if (this.cooldownExpiresAt > Time.time)//stay still in ranged cooldown
+        if (this.cooldownExpiresAt < Time.time)//stay still in ranged cooldown
 		{
             transform.position += movementVector * currentSpeed * Time.deltaTime;
         }
