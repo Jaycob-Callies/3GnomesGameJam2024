@@ -1027,6 +1027,7 @@ MonoBehaviour:
   - {fileID: 7416687659096545983, guid: cf8376522a7f270478a2731bffbc1b9a, type: 3}
   - {fileID: 7416687659096545983, guid: 7f338736c9067654e853d6eaee3e5673, type: 3}
   - {fileID: 7416687659096545983, guid: d34027d34cf4b4b469f81b4c6d093a3f, type: 3}
+  - {fileID: 7416687659096545983, guid: 17fbba7b6c6e8ac489f31415d1175c82, type: 3}
   HP: 3
   GameEnded: 0
   CurrentSpells: 000000000000000000000000
@@ -2572,13 +2573,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77921779fcf7fb4a91a607f20b17ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CastDelay:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
 --- !u!114 &1053561127
 MonoBehaviour:
   m_ObjectHideFlags: 0

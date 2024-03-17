@@ -115,7 +115,7 @@ MonoBehaviour:
   - {fileID: 1655669960, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
   HP: 6
   MoveSpeed: 4
-  DMG: 2
+  DMG: 0
   animationFramteRate: 8
   range: 2.5
   cooldown: 1
