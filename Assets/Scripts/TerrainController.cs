@@ -350,18 +350,25 @@ public class TerrainController : MonoBehaviour
 	}
 	public void spawnDecos()
 	{
-        for(int i = 0; i < this.decoCount; i++)
+        int spawned = 0;
+        while (spawned < decoCount)
         {
             Vector2 location = Random.insideUnitCircle * this.decoDistance;
-            float height = this.noise.signedRawNoise(location.x, location.y);
-            for(int j = 0; j < this.decorations.Count; j++)
+            float height = this.noise.signedRawNoise(location.x, location.y, this.terrainScale);
+            int randomOffset = Random.Range(0, this.decorations.Count);
+
+            for (int j = 0; j < this.decorations.Count; j++)
             {
-                if (this.decorationMaxHeight[j] > height && height > this.decorationMinHeight[j])
+                int offsetJ = (j + randomOffset) % this.decorations.Count;
+                if (this.decorationMaxHeight[offsetJ] > height && height > this.decorationMinHeight[offsetJ])
                 {
-                    Instantiate(this.decorations[j], new Vector3(location.x, location.y, -1f), Quaternion.identity, this.transform);
+                    spawned++;
+                    Debug.Log("Spawned " + this.decorations[offsetJ].name + " at height = " + height + " location " + location);
+                    Instantiate(this.decorations[offsetJ], new Vector3(location.x, location.y, -1f), Quaternion.identity, this.transform);
                     break;
                 }
             }
+
         }
 	}
 }

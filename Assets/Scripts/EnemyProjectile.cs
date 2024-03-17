@@ -35,7 +35,7 @@ public class EnemyProjectile : MonoBehaviour
                 GM = GameObject.FindFirstObjectByType<GameManager>();
 			}
             GM.takeDamage(DMG);
-            GameObject.Destroy(this);
+            GameObject.DestroyImmediate(this);
         }
     }
 

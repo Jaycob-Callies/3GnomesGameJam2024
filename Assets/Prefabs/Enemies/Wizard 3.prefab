@@ -117,7 +117,7 @@ MonoBehaviour:
   MoveSpeed: 4
   DMG: 2
   animationFramteRate: 8
-  range: 1.5
+  range: 2.5
   cooldown: 1
   rangedAttack: {fileID: 7416687659096545983, guid: 59ca08166ff625d45b9bfa95b30de957, type: 3}
 --- !u!61 &1638250277722584954

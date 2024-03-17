@@ -1123,7 +1123,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decoCount
-      value: 1000
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decoDistance
@@ -1135,8 +1135,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorations.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorations.Array.data[0]
+      value: 
+      objectReference: {fileID: 2394523440279832276, guid: 710bfb54591b7bd46a1057cb1c1956f3, type: 3}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorations.Array.data[1]
+      value: 
+      objectReference: {fileID: 2394523440279832276, guid: d422e066997470f489f980494424f0a7, type: 3}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorations.Array.data[2]
+      value: 
+      objectReference: {fileID: 2394523440279832276, guid: 25c78afe935cc4e468c021013cb6edf4, type: 3}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorations.Array.data[3]
+      value: 
+      objectReference: {fileID: 2394523440279832276, guid: 2ac6efd85477615438812ea8c422be47, type: 3}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: spriteCutoff.Array.data[0]
       value: -0.52
@@ -1163,19 +1179,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMaxHeight.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMinHeight.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMaxHeight.Array.data[0]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorationMaxHeight.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorationMaxHeight.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorationMaxHeight.Array.data[3]
+      value: -0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMinHeight.Array.data[0]
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorationMinHeight.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorationMinHeight.Array.data[2]
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorationMinHeight.Array.data[3]
+      value: -0.81
       objectReference: {fileID: 0}
     - target: {fileID: 3304369084875275651, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: m_Name
