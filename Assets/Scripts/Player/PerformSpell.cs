@@ -7,9 +7,9 @@ public class PerformSpell : MonoBehaviour {
     #region variables
     GameManager GM;
 
-    float[] CastSpeed = new float[6];
-    [HideInInspector]
-    public float[] CastDelay = new float[6]; //the ammount in the array needs to be 1 Higher than the amount of total spells
+    float[] CastSpeed = new float[7];
+    
+    float[] CastDelay = new float[7];
 
     #endregion
 
@@ -20,6 +20,7 @@ public class PerformSpell : MonoBehaviour {
         CastSpeed[3] = 1.50f; //3 Lightning
         CastSpeed[4] = 1.20f; //4 Goo
         CastSpeed[5] = 0.20f; //5 Star
+        CastSpeed[6] = 1.20f; //6 Bubble
 
     }
 
@@ -107,6 +108,25 @@ public class PerformSpell : MonoBehaviour {
                 CastDelay[ID] = CastSpeed[ID];
                 GameObject Star = Instantiate(GM.SpellObjects[ID], transform.position, transform.rotation);
                 Star.GetComponent<Rigidbody2D>().AddForce(transform.up * Velocity, ForceMode2D.Impulse);
+            }
+        }
+        if (ID == 6) {
+            //Bubble Attack
+
+            if (CastDelay[ID] < 0) {
+                GM.SpellsCast += 1;
+                float Velocity = 4f;
+                CastDelay[ID] = CastSpeed[ID];
+
+                GameObject Bubble1 = Instantiate(GM.SpellObjects[ID], transform.position, transform.rotation);
+                Bubble1.GetComponent<Rigidbody2D>().AddForce(transform.up * Velocity, ForceMode2D.Impulse);
+                Bubble1.GetComponent<Rigidbody2D>().AddForce(transform.right, ForceMode2D.Impulse);
+                GameObject Bubble2 = Instantiate(GM.SpellObjects[ID], transform.position, transform.rotation);
+                Bubble2.GetComponent<Rigidbody2D>().AddForce(transform.up * Velocity, ForceMode2D.Impulse);
+                Bubble2.GetComponent<Rigidbody2D>().AddForce(transform.right * -1, ForceMode2D.Impulse);
+                GameObject Bubble3 = Instantiate(GM.SpellObjects[ID], transform.position, transform.rotation);
+                Bubble3.GetComponent<Rigidbody2D>().AddForce(transform.up * Velocity, ForceMode2D.Impulse);
+
             }
         }
     }
