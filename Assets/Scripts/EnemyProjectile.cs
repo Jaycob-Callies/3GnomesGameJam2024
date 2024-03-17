@@ -23,7 +23,7 @@ public class EnemyProjectile : MonoBehaviour
         this.transform.position = this.transform.position + ((this.transform.rotation * Vector3.up) * this.projectileSpeed * Time.deltaTime);
         if (this.TCC.terrainSpeedAtPoint(this.transform.position) <= -.9f)
 		{
-            GameObject.Destroy(this);
+            GameObject.DestroyImmediate(this.gameObject);
         }
     }
 
@@ -35,7 +35,7 @@ public class EnemyProjectile : MonoBehaviour
                 GM = GameObject.FindFirstObjectByType<GameManager>();
 			}
             GM.takeDamage(DMG);
-            GameObject.DestroyImmediate(this);
+            GameObject.DestroyImmediate(this.gameObject);
         }
     }
 
