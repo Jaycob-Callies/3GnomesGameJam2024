@@ -1126,7 +1126,7 @@ PrefabInstance:
       objectReference: {fileID: 2800000, guid: c3d9bbec072a1a047b30b5d42da00794, type: 3}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decoDistance
-      value: 300
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: terrainScale
