@@ -13,9 +13,10 @@ public class MM : MonoBehaviour {
 
         SceneManager.LoadScene(1);
 		if (GameObject.Find("GameManager") == true)
-		{
-			GameManager GM = GameObject.Find("GameManager").GetComponent<GameManager>();
-			GM.CurrentSpells[0] = 0;
+        {
+            GameManager GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+            GM.GameEnded = false;
+            GM.CurrentSpells[0] = 0;
 			GM.CurrentSpells[1] = 0;
 			GM.CurrentSpells[2] = 0;
 			GM.gainHealth(3, true);
