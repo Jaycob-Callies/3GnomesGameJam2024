@@ -49,8 +49,20 @@ MonoBehaviour:
   - -0.75
   - 0.65
   - 0.85
+  collisionSpeed:
+  - 1
+  - 1
+  - 1
+  - 1
   seed: 16
+  randomSeed: 1
   shader: {fileID: 4800000, guid: 04e2595a511f09f42a2f52d804abe03c, type: 3}
   terrainScale: 0.04
   ditherPercent: 0.4
+  decorationMinHeight:
+  - 0
+  decorationMaxHeight:
+  - 1
+  decorations:
+  - {fileID: 2394523440279832276, guid: 28df1c0175b21d944a3fbf4f7bda7d70, type: 3}
   spriteList: []

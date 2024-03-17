@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+public class decoration{
+    public float minHeight, maxHeight;
+    public Sprite sprite;
+}
 public class SimplexNoise
 {
     /*
@@ -209,7 +212,8 @@ public class TerrainController : MonoBehaviour
 {
 
     public Texture2D spriteMap = null;
-    public List<float> spriteCutoff = new List<float>();
+	[Range(-1f, 1f)]
+	public List<float> spriteCutoff = new List<float>();
     [Tooltip("Multiplies movement speed, Negative value denotes hard barriers / walls")]
     public List<float> collisionSpeed = new List<float>();
     public int seed = 0;
@@ -218,22 +222,35 @@ public class TerrainController : MonoBehaviour
     public float terrainScale = 0.01f;
     [Range(0f, 1f)]
     public float ditherPercent = 0.5f;
-    [HideInInspector]
+    [Header("Decorations")]
+	public List<GameObject> decorations = new List<GameObject>();
+	[Range(-1f, 1f)]
+	public List<float> decorationMinHeight = new List<float>();
+    [Range(-1f, 1f)]
+	public List<float> decorationMaxHeight = new List<float>();
+
+	public int decoCount = 0;
+    public float decoDistance = 100f;
+	//public List<Sprite> decorations = new List<Sprite>();
+	//public List<Sprite> decorations = new List<Sprite>();
+	[HideInInspector]
     public List<Sprite> spriteList = new List<Sprite>();
     private SimplexNoise noise = new SimplexNoise();
     private TerrainCollisionController terrainCollisionController = null;
-    private TerrainSpriteController terrainSpriteController = null;
+	private TerrainSpriteController terrainSpriteController = null;
+	private DecorationSpawner decoSpawner = null;
 
-    private bool updatedOnce = false;
+	private bool updatedOnce = false;
 
     // Start is called before the first frame update
     void Start()
     {
         GameObject go = this.gameObject;
         this.terrainCollisionController = go.AddComponent<TerrainCollisionController>();
-        this.terrainSpriteController = go.AddComponent<TerrainSpriteController>();
+		this.terrainSpriteController = go.AddComponent<TerrainSpriteController>();
+		this.decoSpawner = go.AddComponent<DecorationSpawner>();
 
-        this.noise = new SimplexNoise();
+		this.noise = new SimplexNoise();
         this.noise.setSeed(this.seed);
 
         if (randomSeed)
@@ -253,8 +270,8 @@ public class TerrainController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (!updatedOnce)
+	{
+		if (!updatedOnce)
         {
             //Debug.Log("2");
             //Debug.Log(this.shader.name);
@@ -268,6 +285,7 @@ public class TerrainController : MonoBehaviour
             //    }
             //    Debug.Log(s);
             //}
+            this.spawnDecos();
             terrainSpriteController.Initialize(this.shader, spriteMap, this.noise.getPermutation(), this.spriteCutoff, this.ditherPercent, this.terrainScale);
             terrainCollisionController.Initialize(this.seed, this.spriteCutoff, this.collisionSpeed, this.ditherPercent, this.terrainScale);
 			updatedOnce = !updatedOnce;
@@ -296,9 +314,54 @@ public class TerrainController : MonoBehaviour
             terrainSpriteController.setSimplexChanges(this.terrainScale, this.noise.getPermutation());
         }
 
-		while (spriteCount != collisionSpeed.Count)
+		while (spriteCount > collisionSpeed.Count)
+		{
+			collisionSpeed.Add(1f);
+		}
+		while (spriteCount < collisionSpeed.Count)
+		{
+			collisionSpeed.RemoveAt(collisionSpeed.Count - 1);
+		}
+
+
+		int decorationCount = decorations.Count;
+		while (decorationCount > decorationMaxHeight.Count)
+		{
+			decorationMaxHeight.Add(1f);
+		}
+		while (decorationCount < decorationMaxHeight.Count)
+		{
+			decorationMaxHeight.RemoveAt(decorationMaxHeight.Count - 1);
+		}
+		while (decorationCount > decorationMinHeight.Count)
+		{
+			decorationMinHeight.Add(-1f);
+		}
+		while (decorationCount < decorationMinHeight.Count)
+		{
+			decorationMinHeight.RemoveAt(decorationMinHeight.Count - 1);
+		}
+        for (int i = 0; i < decorationCount;i++)
         {
-            collisionSpeed.Add(1f);
+            if (decorationMaxHeight[i] < decorationMinHeight[i]) {
+                decorationMaxHeight[i] = decorationMinHeight[i] = (decorationMinHeight[i] + decorationMaxHeight[i] / 2);
+            }
+        }
+	}
+	public void spawnDecos()
+	{
+        for(int i = 0; i < this.decoCount; i++)
+        {
+            Vector2 location = Random.insideUnitCircle * this.decoDistance;
+            float height = this.noise.signedRawNoise(location.x, location.y);
+            for(int j = 0; j < this.decorations.Count; j++)
+            {
+                if (this.decorationMaxHeight[j] > height && height > this.decorationMinHeight[j])
+                {
+                    Instantiate(this.decorations[j], new Vector3(location.x, location.y, -1f), Quaternion.identity, this.transform);
+                    break;
+                }
+            }
         }
 	}
 }

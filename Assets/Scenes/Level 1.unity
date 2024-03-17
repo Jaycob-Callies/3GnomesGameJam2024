@@ -1122,8 +1122,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decoCount
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decoDistance
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: terrainScale
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorations.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: spriteCutoff.Array.data[0]
@@ -1148,6 +1160,22 @@ PrefabInstance:
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: collisionSpeed.Array.data[3]
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorationMaxHeight.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorationMinHeight.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorationMaxHeight.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
+      propertyPath: decorationMinHeight.Array.data[0]
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3304369084875275651, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: m_Name
