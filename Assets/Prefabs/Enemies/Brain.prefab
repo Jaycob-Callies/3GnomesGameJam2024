@@ -109,8 +109,8 @@ MonoBehaviour:
   MoveSpeed: 4.5
   DMG: 8
   animationFramteRate: 2
-  range: 5
-  cooldown: 0.5
+  range: 5.5
+  cooldown: 0.75
   rangedAttack: {fileID: 5273953905056438551, guid: 58acf5aad87469543b67edf707aeecbb, type: 3}
 --- !u!61 &1638250277722584954
 BoxCollider2D:

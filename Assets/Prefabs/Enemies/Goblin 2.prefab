@@ -114,9 +114,12 @@ MonoBehaviour:
   - {fileID: 361259236, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
   - {fileID: 593665095, guid: 8bb7679e8aeaa234f82e4c9ba9a43756, type: 3}
   HP: 12
-  MoveSpeed: 4
+  MoveSpeed: 3.5
   DMG: 2
   animationFramteRate: 8
+  range: 0.5
+  cooldown: 1
+  rangedAttack: {fileID: 0}
 --- !u!61 &1638250277722584954
 BoxCollider2D:
   m_ObjectHideFlags: 0
