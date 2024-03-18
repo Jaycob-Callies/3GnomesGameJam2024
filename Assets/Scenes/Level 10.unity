@@ -1135,7 +1135,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorations.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: spriteCutoff.Array.size
@@ -1148,15 +1148,15 @@ PrefabInstance:
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorations.Array.data[0]
       value: 
-      objectReference: {fileID: 2394523440279832276, guid: fac9fb775506cdb43a6a222ad0be139f, type: 3}
+      objectReference: {fileID: 2394523440279832276, guid: ae4d7fb4e21b9d64590c34968fc18570, type: 3}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorations.Array.data[1]
       value: 
-      objectReference: {fileID: 2394523440279832276, guid: 9aa5cb73a1b448f499b8a50b6fa1388a, type: 3}
+      objectReference: {fileID: 2394523440279832276, guid: bec4e5d905abf484484edcac3cb2b69b, type: 3}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorations.Array.data[2]
       value: 
-      objectReference: {fileID: 2394523440279832276, guid: bec4e5d905abf484484edcac3cb2b69b, type: 3}
+      objectReference: {fileID: 2394523440279832276, guid: 2ac6efd85477615438812ea8c422be47, type: 3}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorations.Array.data[3]
       value: 
@@ -1251,23 +1251,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMaxHeight.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMinHeight.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMaxHeight.Array.data[0]
-      value: -0.2
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMaxHeight.Array.data[1]
-      value: -0.2
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMaxHeight.Array.data[2]
-      value: 0.5
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMaxHeight.Array.data[3]
@@ -1279,15 +1279,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMinHeight.Array.data[0]
-      value: -0.5
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMinHeight.Array.data[1]
-      value: -0.5
+      value: -0.0565361
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMinHeight.Array.data[2]
-      value: 0.23
+      value: -0.62
       objectReference: {fileID: 0}
     - target: {fileID: 2304180680266407083, guid: bc7a6a711329c1342a56ac8df5a22bc2, type: 3}
       propertyPath: decorationMinHeight.Array.data[3]
