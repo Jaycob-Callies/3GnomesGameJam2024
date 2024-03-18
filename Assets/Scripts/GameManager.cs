@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
     public int LevelReached = 1;
 
     public int GrantSpell() {
-        return UnityEngine.Random.Range(1, 7); // the second number must be 1 higher than the ammount of spells
+        return UnityEngine.Random.Range(1, 8); // the second number must be 1 higher than the ammount of spells
     }
 	public void ResetStats(){ 
         TimePlayed = 0f;
