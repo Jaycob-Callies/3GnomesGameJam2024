@@ -30,14 +30,20 @@ public class PlayerSpells : MonoBehaviour {
         #region Setting the UI when you go to the next floor
         if (GM.CurrentSpells[0] != 0) {
             hasSpell[0] = true;
+            isCooldown[0] = true;
+            UiIcons[0].fillAmount = 1;
             UiIcons[0].fillAmount = 1; 
         }
         if (GM.CurrentSpells[1] != 0) {
             hasSpell[1] = true;
+            isCooldown[1] = true;
+            UiIcons[1].fillAmount = 1;
             UiIcons[1].fillAmount = 1;
         }
         if (GM.CurrentSpells[2] != 0) {
             hasSpell[2] = true;
+            isCooldown[2] = true;
+            UiIcons[2].fillAmount = 1;
             UiIcons[2].fillAmount = 1;
         }
         #endregion
