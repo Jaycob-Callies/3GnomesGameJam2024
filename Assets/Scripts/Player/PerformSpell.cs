@@ -139,7 +139,7 @@ public class PerformSpell : MonoBehaviour {
 
                 GameObject Skull = Instantiate(GM.SpellObjects[ID], transform.position, transform.rotation);
                 Skull.GetComponent<Rigidbody2D>().AddForce(transform.up * 3, ForceMode2D.Impulse);
-                StartCoroutine(SpeedUp(Skull, 6));
+                StartCoroutine(SpeedUpSkull(Skull, 6));
             }
         }
     }
@@ -150,10 +150,10 @@ public class PerformSpell : MonoBehaviour {
         Ice2.GetComponent<Rigidbody2D>().AddForce(transform.up * Vel, ForceMode2D.Impulse);
     }
 
-    IEnumerator SpeedUp(GameObject Skull, float Vel) {
+    IEnumerator SpeedUpSkull(GameObject Skull, float Vel) {
         yield return new WaitForSeconds(0.5f);
         if(Skull != null) {
-            Skull.GetComponent<Rigidbody2D>().AddForce(transform.up * Vel, ForceMode2D.Impulse);
+            Skull.GetComponent<Rigidbody2D>().AddForce(Skull.transform.up * Vel, ForceMode2D.Impulse);
         }
     }
 }

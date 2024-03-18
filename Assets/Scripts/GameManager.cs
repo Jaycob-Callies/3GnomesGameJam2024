@@ -32,8 +32,11 @@ public class GameManager : MonoBehaviour {
 	public void takeDamage(int damage)
     {
 		this.HP -= Mathf.Abs(damage);
-		GameObject.FindAnyObjectByType<HeartHolder>().UpdateHearts();
-		if (this.HP <= 0)
+        if (GameObject.FindAnyObjectByType<HeartHolder>() != null)
+        {
+            GameObject.FindAnyObjectByType<HeartHolder>().UpdateHearts();
+        }
+        if (this.HP <= 0)
 		{
 			GameObject.FindAnyObjectByType<LoseScreen>(FindObjectsInactive.Include).GameOver();
 		}
@@ -47,7 +50,10 @@ public class GameManager : MonoBehaviour {
             this.HP = health;
 		}
         this.HP = Mathf.Min(this.HP, 7);
-        GameObject.FindAnyObjectByType<HeartHolder>().UpdateHearts();
+
+        if(GameObject.FindAnyObjectByType<HeartHolder>() != null) {
+            GameObject.FindAnyObjectByType<HeartHolder>().UpdateHearts(); 
+        }
 
 	}
     public int getHP()

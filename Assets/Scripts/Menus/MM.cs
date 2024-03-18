@@ -12,6 +12,7 @@ public class MM : MonoBehaviour {
     public void LoadGame() {
 
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
 		if (GameObject.Find("GameManager") == true)
         {
             GameManager GM = GameObject.Find("GameManager").GetComponent<GameManager>();
