@@ -18,5 +18,10 @@ public class SpellAttacks : MonoBehaviour {
                 col.gameObject.GetComponent<Enemy>().slowEnemy(1.0f, 2f, new Color(1f, 1f, 0.0f));
             }
         }
+        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Enemy")
+        {
+            GameObject.FindFirstObjectByType<GameManager>().takeDamage(Damage);
+            GameObject.DestroyImmediate(this.gameObject);
+        }
     }
 }

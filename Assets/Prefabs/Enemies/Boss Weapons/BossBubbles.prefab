@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5088798941746163022}
   - component: {fileID: 657169156251103261}
   - component: {fileID: 5784730170637513664}
-  - component: {fileID: 8925010136603063180}
+  - component: {fileID: 4916996587939333980}
   m_Layer: 9
-  m_Name: Enemy Lightning
+  m_Name: BossBubbles
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1525448153, guid: 0316e0b3ed509314a913260877d45521, type: 3}
+  m_Sprite: {fileID: -135467185, guid: 0316e0b3ed509314a913260877d45521, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,9 +119,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.0037128131}
+  m_Offset: {x: -0.035, y: -0.03}
   serializedVersion: 2
-  m_Radius: 0.3502489
+  m_Radius: 0.20059396
 --- !u!50 &5784730170637513664
 Rigidbody2D:
   serializedVersion: 4
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8925010136603063180
+--- !u!114 &4916996587939333980
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98af14c3cc274a744b9909689c9ca2b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 6
+  projectileSpeed: 4
   DMG: 1
   GM: {fileID: 0}
   TCC: {fileID: 0}

@@ -8,6 +8,7 @@ public class EnemyProjectile : MonoBehaviour
     public int DMG;
     [HideInInspector]
     public GameManager GM = null;
+    private bool marktodelete = false;
 
     [HideInInspector]
     public TerrainCollisionController TCC = null;
@@ -21,7 +22,7 @@ public class EnemyProjectile : MonoBehaviour
     void Update()
     {
         this.transform.position = this.transform.position + ((this.transform.rotation * Vector3.up) * this.projectileSpeed * Time.deltaTime);
-        if (this.TCC.terrainSpeedAtPoint(this.transform.position) <= -.9f)
+        if (this.TCC.terrainSpeedAtPoint(this.transform.position) <= -.9f || marktodelete)
 		{
             GameObject.DestroyImmediate(this.gameObject);
         }
@@ -35,7 +36,7 @@ public class EnemyProjectile : MonoBehaviour
                 GM = GameObject.FindFirstObjectByType<GameManager>();
 			}
             GM.takeDamage(DMG);
-            GameObject.DestroyImmediate(this.gameObject);
+            marktodelete = true;
         }
     }
 

@@ -149,15 +149,15 @@ public class Enemy : MonoBehaviour {
 		}
     }
 
-    private void Attack()
+    private void Attack(bool collision = false)
     {
         if (cooldownExpiresAt > Time.time)
 		{
             return;
 		}
-        if (rangedAttack == null)//melee
+        if (rangedAttack == null || collision)//melee
         {
-			Debug.Log(this.name + " did melee damage from " + this.transform.position + " to " + player.transform.position);
+			//Debug.Log(this.name + " did melee damage from " + this.transform.position + " to " + player.transform.position);
             cooldownExpiresAt = cooldown + Time.time;
             GM.takeDamage(DMG);
         }
@@ -174,14 +174,14 @@ public class Enemy : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag == "Player") {
-            this.Attack();
+            this.Attack(true);
         }
     }
 	private void OnCollisionStay2D(Collision2D collision)
 	{
         if (collision.gameObject.tag == "Player")
         {
-            this.Attack();
+            this.Attack(true);
         }
     }
 }
