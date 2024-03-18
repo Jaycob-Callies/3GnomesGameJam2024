@@ -7,9 +7,9 @@ public class PerformSpell : MonoBehaviour {
     #region variables
     GameManager GM;
 
-    float[] CastSpeed = new float[7];
+    float[] CastSpeed = new float[8];
     
-    float[] CastDelay = new float[7];
+    float[] CastDelay = new float[8];
 
     #endregion
 
@@ -19,8 +19,9 @@ public class PerformSpell : MonoBehaviour {
         CastSpeed[2] = 1.00f; //2 Ice
         CastSpeed[3] = 1.50f; //3 Lightning
         CastSpeed[4] = 1.20f; //4 Goo
-        CastSpeed[5] = 0.20f; //5 Star
+        CastSpeed[5] = 0.30f; //5 Star
         CastSpeed[6] = 1.20f; //6 Bubble
+        CastSpeed[7] = 1.20f; //7 Skull
 
     }
 
@@ -129,11 +130,30 @@ public class PerformSpell : MonoBehaviour {
 
             }
         }
+        if (ID == 7) {
+            //Skull Attack 
+            if (CastDelay[ID] < 0) {
+
+                GM.SpellsCast += 1;
+                CastDelay[ID] = CastSpeed[ID];
+
+                GameObject Skull = Instantiate(GM.SpellObjects[ID], transform.position, transform.rotation);
+                Skull.GetComponent<Rigidbody2D>().AddForce(transform.up * 3, ForceMode2D.Impulse);
+                StartCoroutine(SpeedUp(Skull, 6));
+            }
+        }
     }
 
     IEnumerator SecondIcicle(float Vel) {
         yield return new WaitForSeconds(0.1f);
         GameObject Ice2 = Instantiate(GM.SpellObjects[2], transform.position, transform.rotation);
         Ice2.GetComponent<Rigidbody2D>().AddForce(transform.up * Vel, ForceMode2D.Impulse);
+    }
+
+    IEnumerator SpeedUp(GameObject Skull, float Vel) {
+        yield return new WaitForSeconds(0.5f);
+        if(Skull != null) {
+            Skull.GetComponent<Rigidbody2D>().AddForce(transform.up * Vel, ForceMode2D.Impulse);
+        }
     }
 }
