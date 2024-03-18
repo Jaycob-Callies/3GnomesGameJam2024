@@ -15,13 +15,13 @@ public class PerformSpell : MonoBehaviour {
 
     private void Start() {
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
-        CastSpeed[1] = 0.75f; //1 Fireball
-        CastSpeed[2] = 1.00f; //2 Ice
-        CastSpeed[3] = 1.50f; //3 Lightning
-        CastSpeed[4] = 1.20f; //4 Goo
-        CastSpeed[5] = 0.30f; //5 Star
-        CastSpeed[6] = 1.20f; //6 Bubble
-        CastSpeed[7] = 1.20f; //7 Skull
+        CastSpeed[1] = 0.75f; //1 Fireball 5.33
+        CastSpeed[2] = 1.15f; //2 Ice 3.5
+        CastSpeed[3] = 1.50f; //3 Lightning 2 Stun
+        CastSpeed[4] = 1.20f; //4 Goo 2.5 slow
+        CastSpeed[5] = 0.33f; //5 Star 3
+        CastSpeed[6] = 1.00f; //6 Bubble 3
+        CastSpeed[7] = 1.20f; //7 Skull 3.33
 
     }
 
