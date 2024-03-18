@@ -1922,7 +1922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2551405585357339076, guid: 09942456004d84a439c2d375a8baaab1, type: 3}
       propertyPath: HP
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2551405585357339076, guid: 09942456004d84a439c2d375a8baaab1, type: 3}
       propertyPath: cooldown
