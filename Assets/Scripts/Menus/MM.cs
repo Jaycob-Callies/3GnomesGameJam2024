@@ -20,6 +20,7 @@ public class MM : MonoBehaviour {
 			GM.CurrentSpells[1] = 0;
 			GM.CurrentSpells[2] = 0;
 			GM.gainHealth(3, true);
+            GM.ResetStats();
 		}
 	}
     public void OpenMM() {

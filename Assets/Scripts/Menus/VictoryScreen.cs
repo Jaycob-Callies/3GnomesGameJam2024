@@ -3,13 +3,15 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 public class VictoryScreen : MonoBehaviour {
-    public void BackToMainMenu() {
-        SceneManager.LoadScene(0);
-    }
 
     GameManager GM;
 
     public TextMeshProUGUI[] StatsText;
+
+    public void BackToMainMenu() {
+        GM.ResetStats();
+        SceneManager.LoadScene(0);
+    }
 
     void Start() {
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
